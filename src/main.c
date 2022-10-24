@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "raylib.h"
-#include "raymath.h"
+#include "../include/raylib.h"
+#include "../include/raymath.h"
+
 
 int screenWidth = 800;
 int screenHeight = 480;

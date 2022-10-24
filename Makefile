@@ -22,7 +22,7 @@ endif
 
 run: $(TARGET)
 ifeq ($(detected_OS), Windows)
-	$(BUILDDIR)/$(TARGET).exe
+	.\$(BUILDDIR)\$(TARGET)
 else
 	./$(BUILDDIR)/$(TARGET)
 endif
@@ -30,5 +30,5 @@ endif
 all: $(TARGET)
 
 $(TARGET): $(SRCDIR)/main.c
-	$(CC) $(CFLAGS) $(SRCDIR)/main.c -o $(BUILDDIR)/$(TARGET)
+	$(CC) $(SRCDIR)/main.c -o $(BUILDDIR)/$(TARGET) $(CFLAGS) 
 
