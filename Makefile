@@ -5,7 +5,8 @@ OBJDIR = obj
 ifeq ($(OS),Windows_NT)
     detected_OS := Windows
 	CC = gcc
-	CFLAGS = -Wshadow -Wextra -Wall -g -std=c99 -Wno-missing-braces -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+				
+	CFLAGS = -Wall -Wshadow -Wextra -g -std=c99 -Wno-missing-braces -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
 	C_PROD_FLAGS = -O3 -std=c99 -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
 	TARGET = minesweeper-rts.exe
 else
