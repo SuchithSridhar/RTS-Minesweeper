@@ -193,6 +193,7 @@ void drawStatistics(Statistics *statistics, int *screen_width, int *screen_heigh
  * @param screen_height represents the current screen height
  */
 void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state, int *screen_width, int *screen_height);
+
 /**
  * The setMenuBounds function sets creates the rectangle bounds for the buttons in the StartMenu struct
  * @param menu pointer to a StartMenu struct
