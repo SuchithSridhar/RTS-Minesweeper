@@ -8,7 +8,7 @@ An RTS version of the classic game: minesweeper.
 - Raylib ([https://www.raylib.com/])
 - Make
     
-Windows setup:[link]
+Windows setup:[link](#Getting-Started-on-Windows)
 
 # Compile and Execute
 
