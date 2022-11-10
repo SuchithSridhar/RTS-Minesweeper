@@ -1,18 +1,18 @@
 ## JIRA
 
-\[Include link to your JIRA ticket\]
+[Include link to your JIRA ticket]
 
 ## Description
 
-\[Include a brief description of the changes made and why you made them.\]
+[Include a brief description of the changes made and why you made them.]
 
 ## Changes
 
-\[List the changes that were made.\]
+[List the changes that were made.]
 
 ## Notes
 
-\[If you have some notes about this PR add it here.\]
+[If you have some notes about this PR add it here.]
 
 
 ## Developer Checklist
