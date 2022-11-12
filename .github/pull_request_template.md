@@ -17,17 +17,17 @@
 
 ## Developer Checklist
 
-- [] Move JIRA to waiting for PR review.
-- [] Completed a self-review of the PR.
-- [] Rebased branch in the past day.
-- [] Updated the documentation as necessary.
-- [] Updated test cases as necessary.
+- [ ] Move JIRA to waiting for PR review.
+- [ ] Completed a self-review of the PR.
+- [ ] Rebased branch in the past day.
+- [ ] Updated the documentation as necessary.
+- [ ] Updated test cases as necessary.
 
 ## PR Reviewer Checklist
 
-- [] Reviewed code changes.
-- [] Confirmed PR has been rebased recently.
-- [] Tested the changes listed by the developer.
-- [] Ensured conventions followed are according to project conventions.
-- [] Ensured test cases have been updated.
-- [] Ensured documentation has been updated.
+- [ ] Reviewed code changes.
+- [ ] Confirmed PR has been rebased recently.
+- [ ] Tested the changes listed by the developer.
+- [ ] Ensured conventions followed are according to project conventions.
+- [ ] Ensured test cases have been updated.
+- [ ] Ensured documentation has been updated.
