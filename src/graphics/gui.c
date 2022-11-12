@@ -12,7 +12,6 @@ char title[] = "Minesweeper RTS";
 int state = STATE_START;
 
 void runGameGui() {
-    srand(time(0));
     InitWindow(screenWidth, screenHeight, title);
     
     SetTargetFPS(60);
@@ -22,9 +21,9 @@ void runGameGui() {
         ClearBackground(RAYWHITE);
         DrawText("Example Window!", screenWidth/2 - MeasureText("Example Window!", 32) / 2, screenHeight / 2 - 32 / 2, 32, DARKGRAY);
         switch (state){
-        default:
-            // TODO: Add an error message.
-            break;
+            default:
+                // TODO: Add an error message.
+                break;
         }
         EndDrawing();
     }
