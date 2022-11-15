@@ -77,4 +77,52 @@ void SetStatsBounds(Statistics *stats,double width,double height){
     (position.y+height/1.5f)-stats->menu_button_array[0].button_height-stats->menu_button_array[0].button_height/7.0f,
     stats->menu_button_array[0].button_width,stats->menu_button_array[0].button_height};
     stats->menu_button_array[0].bounds=back_bounds;
-}   
+}
+void DrawStartGameSettings(StartSettings *start_settings,double width, double height){
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    DrawRectangle(position.x,position.y,width/2.0f,height/1.5f,BLACK);
+    DrawRectangleRec(start_settings->menu_button_array[0].bounds,BLACK);
+    DrawRectangleRec(start_settings->menu_button_array[1].bounds,BLACK);
+
+    DrawText(start_settings->menu_button_array[0].text,
+    start_settings->menu_button_array[0].bounds.x+start_settings->menu_button_array[0].bounds.width/2.0f-MeasureText(start_settings->menu_button_array[0].text,FONT_SIZE_BUT)/2.0f,
+    start_settings->menu_button_array[0].bounds.y+start_settings->menu_button_array[0].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
+    
+    DrawText(start_settings->menu_button_array[1].text,
+    start_settings->menu_button_array[1].bounds.x+start_settings->menu_button_array[1].bounds.width/2.0f-MeasureText(start_settings->menu_button_array[1].text,FONT_SIZE_BUT)/2.0f,
+    start_settings->menu_button_array[1].bounds.y+start_settings->menu_button_array[1].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
+}
+
+void DrawSettings(Settings *settings,double width, double height){
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    DrawRectangle(position.x,position.y,width/2.0f,height/1.5f,BLACK);
+    DrawRectangleRec(settings->menu_button_array[0].bounds,BLACK);
+    DrawRectangleRec(settings->menu_button_array[1].bounds,BLACK);
+    DrawText(settings->menu_button_array[0].text,
+    settings->menu_button_array[0].bounds.x+settings->menu_button_array[0].bounds.width/2.0f-MeasureText(settings->menu_button_array[0].text,FONT_SIZE_BUT)/2.0f,
+    settings->menu_button_array[0].bounds.y+settings->menu_button_array[0].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
+    
+    DrawText(settings->menu_button_array[1].text,
+    settings->menu_button_array[1].bounds.x+settings->menu_button_array[1].bounds.width/2.0f-MeasureText(settings->menu_button_array[1].text,FONT_SIZE_BUT)/2.0f,
+    settings->menu_button_array[1].bounds.y+settings->menu_button_array[1].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
+}
+
+void DrawStatistics(Statistics *stats,double width, double height){
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    DrawRectangle(position.x,position.y,width/2.0f,height/1.5f,BLACK);
+    DrawRectangleRec(stats->menu_button_array[0].bounds,BLACK);
+    DrawText(stats->menu_button_array[0].text,stats->menu_button_array[0].bounds.x+stats->menu_button_array[0].bounds.width/2.0f-MeasureText(stats->menu_button_array[0].text,FONT_SIZE_BUT)/2.0f,
+    stats->menu_button_array[0].bounds.y+stats->menu_button_array[0].bounds.height/2.0f,FONT_SIZE_BUT,WHITE);
+
+}
+void ExitGame(){
+    EndDrawing();
+    CloseWindow();
+    exit(0);
+}
