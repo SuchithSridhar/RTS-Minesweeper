@@ -1,0 +1,10 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#define FONT_SIZE_BUT 16
+#define FONT_SIZE_TITLE 40
+#define NUM_MENU_BUTTONS 4
+#define NUM_SETTINGS_BUTTONS 2
+
+
+#endif

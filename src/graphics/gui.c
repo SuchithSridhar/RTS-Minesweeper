@@ -5,6 +5,7 @@
 
 #include "gui.h"
 #include "state.h"
+#include "constants.h"
 int screenWidth = 800;
 int screenHeight = 800;
 char title[] = "Minesweeper RTS";
