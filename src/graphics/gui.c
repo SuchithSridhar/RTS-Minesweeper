@@ -62,7 +62,7 @@ void runGameGui() {
     statistics->menu_button_array[0].button_height = ((float)screen_height/10);
     statistics->button_hover=0;
     SetStatsBounds(statistics,screen_width,screen_height);
-    
+
     InitWindow(screen_width, screen_height, title);
     
     SetTargetFPS(60);
@@ -70,7 +70,6 @@ void runGameGui() {
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Example Window!", screen_width/2 - MeasureText("Example Window!", 32) / 2, screen_height / 2 - 32 / 2, 32, DARKGRAY);
         switch (state){
             case(STATE_START):
                 break;
