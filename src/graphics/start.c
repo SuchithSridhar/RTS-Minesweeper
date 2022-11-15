@@ -23,3 +23,18 @@ void DrawStartMenu(Menu *menu,double width, double height){
     title_position.y = height/10;
     DrawText(menu->title,title_position.x,title_position.y,FONT_SIZE_TITLE,BLACK);
 }
+void SetMenuBounds(Menu *menu,double width,double height){
+    Rectangle start_bounds = {(width/2.0f-menu->menu_button_array[0].button_width/2.0f),height/4.0f,menu->menu_button_array[0].button_width,
+    menu->menu_button_array[0].button_height};
+    Rectangle settings_bounds = {(width/2.0f-menu->menu_button_array[1].button_width/2.0f),(height/2.0f - menu->menu_button_array[1].button_height/2.0f)/NUM_MENU_BUTTONS 
+    +height/4.0f, menu->menu_button_array[1].button_width,menu->menu_button_array[1].button_height};
+    Rectangle statistics_bounds = {(width/2.0f-menu->menu_button_array[2].button_width/2.0f),2*(height/2.0f-menu->menu_button_array[2].button_height/2.0f)/NUM_MENU_BUTTONS +height/4.0f,
+    menu->menu_button_array[2].button_width,menu->menu_button_array[2].button_height};
+    Rectangle exit_bounds = {(width/2.0f-menu->menu_button_array[3].button_width/2.0f),
+    3*(height/2.0f - menu->menu_button_array[3].button_height/2.0f)/NUM_MENU_BUTTONS + height/4.0f,menu->menu_button_array[3].button_width,menu->menu_button_array[3].button_height};
+    
+    menu->menu_button_array[0].bounds=start_bounds;
+    menu->menu_button_array[1].bounds=settings_bounds;
+    menu->menu_button_array[2].bounds=statistics_bounds;
+    menu->menu_button_array[3].bounds=exit_bounds;
+}
