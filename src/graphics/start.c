@@ -38,3 +38,43 @@ void SetMenuBounds(Menu *menu,double width,double height){
     menu->menu_button_array[2].bounds=statistics_bounds;
     menu->menu_button_array[3].bounds=exit_bounds;
 }
+void SetStartGameBounds(StartSettings *start_settings,double width,double height){
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    //Assumes button width and height are the same
+    float button_width= start_settings->menu_button_array[0].button_width;
+    float button_height= start_settings->menu_button_array[0].button_height;
+
+    Rectangle back_bounds={position.x+button_width/7.0f,(position.y+height/1.5f)-button_height-button_height/7.0f,button_width,button_height};
+    Rectangle start_game_bounds= {(position.x+width/2.0f)-button_width-button_width/7.0f,(position.y+height/1.5f)-button_height-button_height/7.0f,button_width,button_height};
+
+    start_settings->menu_button_array[0].bounds=back_bounds;
+    start_settings->menu_button_array[1].bounds=start_game_bounds;
+}
+
+void SetSettingsBounds(Settings *settings,double width,double height){
+    
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    //Assumes button width and height are the same
+    float button_width= settings->menu_button_array[0].button_width;
+    float button_height= settings->menu_button_array[0].button_height;
+
+    Rectangle back_bounds={position.x+button_width/7.0f,(position.y+height/1.5f)-button_height-button_height/7.0f,button_width,button_height};
+    Rectangle apply_bounds= {(position.x+width/2.0f)-button_width-button_width/7.0f,(position.y+height/1.5f)-button_height-button_height/7.0f,button_width,button_height};
+
+    settings->menu_button_array[0].bounds=back_bounds;
+    settings->menu_button_array[1].bounds=apply_bounds;
+}
+
+void SetStatsBounds(Statistics *stats,double width,double height){
+    Vector2 position;
+    position.x = (width/2.0f-width/4.0f);
+    position.y = (height/2.0f-height/3.5f);
+    Rectangle back_bounds={position.x+width/4.0f -stats->menu_button_array[0].button_width/2.0f,
+    (position.y+height/1.5f)-stats->menu_button_array[0].button_height-stats->menu_button_array[0].button_height/7.0f,
+    stats->menu_button_array[0].button_width,stats->menu_button_array[0].button_height};
+    stats->menu_button_array[0].bounds=back_bounds;
+}   
