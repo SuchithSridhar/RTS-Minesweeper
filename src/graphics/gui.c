@@ -22,6 +22,18 @@ void runGameGui() {
         ClearBackground(RAYWHITE);
         DrawText("Example Window!", screenWidth/2 - MeasureText("Example Window!", 32) / 2, screenHeight / 2 - 32 / 2, 32, DARKGRAY);
         switch (state){
+            case(STATE_START):
+                break;
+            case(STATE_START_SETTINGS):
+                break;
+            case(STATE_GAME):
+                break;
+            case(STATE_SETTINGS):
+                break;
+            case(STATE_STATISTICS):
+                break;
+            case(STATE_EXIT):
+                break;
             default:
                 // TODO: Add an error message.
                 break;
