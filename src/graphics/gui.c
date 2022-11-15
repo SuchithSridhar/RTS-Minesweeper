@@ -42,6 +42,7 @@ void runGameGui() {
         start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
     start_settings->button_hover=0;
+    SetStartGameBounds(start_settings,screen_width,screen_height);
 
     // Init Settings
     settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
@@ -52,6 +53,7 @@ void runGameGui() {
         settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
     settings->button_hover=0;
+    SetSettingsBounds(settings,screen_width,screen_height);
 
     // Init Stats 
     statistics->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton));
@@ -59,6 +61,7 @@ void runGameGui() {
     statistics->menu_button_array[0].button_width =((float)screen_width/5);
     statistics->menu_button_array[0].button_height = ((float)screen_height/10);
     statistics->button_hover=0;
+    SetStatsBounds(statistics,screen_width,screen_height);
     
     InitWindow(screen_width, screen_height, title);
     
