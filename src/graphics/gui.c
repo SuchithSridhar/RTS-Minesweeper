@@ -16,6 +16,9 @@ int state = STATE_START;
 
 void runGameGui() {
     Menu *menu =(Menu*) malloc(sizeof(menu));
+    StartSettings *start_settings =(StartSettings*) malloc(sizeof(start_settings));
+    Settings *settings =(Settings*) malloc(sizeof(settings));
+    Statistics *statistics =(Statistics*) malloc(sizeof(statistics));
     // Init Menu
     menu->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_MENU_BUTTONS);
     menu->title = "RTS Minesweeper";
@@ -29,6 +32,34 @@ void runGameGui() {
     }
     menu->button_hover=0;
     SetMenuBounds(menu,screen_width,screen_height);
+
+    // Init Start Settings
+    start_settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
+    start_settings->menu_button_array[0].text="BACK";
+    start_settings->menu_button_array[1].text="PLAY";
+    for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
+        start_settings->menu_button_array[i].button_width =((float)screen_width/5);
+        start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
+    }
+    start_settings->button_hover=0;
+
+    // Init Settings
+    settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
+    settings->menu_button_array[0].text="BACK";
+    settings->menu_button_array[1].text="APPLY";
+    for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
+        settings->menu_button_array[i].button_width =((float)screen_width/5);
+        settings->menu_button_array[i].button_height = ((float)screen_height/10);
+    }
+    settings->button_hover=0;
+
+    // Init Stats 
+    statistics->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton));
+    statistics->menu_button_array[0].text="BACK";
+    statistics->menu_button_array[0].button_width =((float)screen_width/5);
+    statistics->menu_button_array[0].button_height = ((float)screen_height/10);
+    statistics->button_hover=0;
+    
     InitWindow(screen_width, screen_height, title);
     
     SetTargetFPS(60);
