@@ -126,3 +126,11 @@ void ExitGame(){
     CloseWindow();
     exit(0);
 }
+void MouseHoverButton(MenuButton *button){
+    DrawRectangleRec(button->bounds,DARKGRAY);
+    Vector2 text_position;
+    text_position.x = button->bounds.x
+    +(button->bounds.width/2)-((float)MeasureText(button->text,FONT_SIZE_BUT))/2.0f;
+    text_position.y = button->bounds.y+(button->bounds.height/2.0f);
+    DrawText(button->text,text_position.x,text_position.y,FONT_SIZE_BUT,YELLOW);
+}
