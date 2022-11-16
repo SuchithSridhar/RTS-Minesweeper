@@ -72,16 +72,21 @@ void runGameGui() {
         ClearBackground(RAYWHITE);
         switch (state){
             case(STATE_START):
+                DrawStartMenu(menu,screen_width,screen_height);
                 break;
             case(STATE_START_SETTINGS):
+                DrawStartGameSettings(start_settings,screen_width,screen_height);
                 break;
             case(STATE_GAME):
                 break;
             case(STATE_SETTINGS):
+                DrawSettings(settings,screen_width,screen_height);
                 break;
             case(STATE_STATISTICS):
+                DrawStatistics(statistics,screen_width,screen_height);
                 break;
             case(STATE_EXIT):
+                ExitGame();
                 break;
             default:
                 // TODO: Add an error message.
