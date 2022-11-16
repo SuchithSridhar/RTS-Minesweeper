@@ -66,8 +66,14 @@ void runGameGui() {
     InitWindow(screen_width, screen_height, title);
     
     SetTargetFPS(60);
-
+    Vector2 mousePos= {0.0f, 0.0f};
+    Vector2 *mp =&mousePos;
     while (!WindowShouldClose()) {
+        mousePos = GetMousePosition();
+        menu->button_hover=0;
+        settings->button_hover=0;
+        start_settings->button_hover=0;
+        statistics->button_hover=0;
         BeginDrawing();
         ClearBackground(RAYWHITE);
         switch (state){
