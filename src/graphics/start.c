@@ -134,3 +134,50 @@ void MouseHoverButton(MenuButton *button){
     text_position.y = button->bounds.y+(button->bounds.height/2.0f);
     DrawText(button->text,text_position.x,text_position.y,FONT_SIZE_BUT,YELLOW);
 }
+void MenuClick(Menu *menu,int *state){
+    switch (menu->button_hover){
+        case(1):
+            *state=1;
+            break;
+        case(2):
+            *state=3;
+            break;
+        case(3):
+            *state=4;
+            break;
+        case(4):
+            *state=5;
+            break;
+        default:
+            break;
+    }
+}
+void StartGameClick(StartSettings *start_settings, int *state){
+    switch (start_settings->button_hover){
+        case(1):
+            *state=0;
+            break;
+        case(2):
+            *state=2;
+            break;
+        default:
+            break;
+    }
+}
+
+void SettingsClick(Settings *settings,int *state){
+    switch (settings->button_hover){
+        case(1):
+            *state=0;
+            break;
+        case(2):
+            *state=3;
+            break;
+        default:
+            break;
+    }
+}
+
+void StatsClick(int *state){
+    *state=0;
+}
