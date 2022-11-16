@@ -70,6 +70,30 @@ void runGameGui() {
     Vector2 *mp =&mousePos;
     while (!WindowShouldClose()) {
         mousePos = GetMousePosition();
+                switch (state){
+            case(STATE_START):
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&menu->button_hover>0)
+                    MenuClick(menu,&state);
+                break;
+            case(STATE_START_SETTINGS):
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&start_settings->button_hover>0)
+                    StartGameClick(start_settings,&state);
+                break;
+            case(STATE_GAME):
+                // TODO: Add a click function for in game state
+                break;
+            case(STATE_SETTINGS):
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&settings->button_hover>0)
+                    SettingsClick(settings,&state);
+                break;
+            case(STATE_STATISTICS):
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&statistics->button_hover==1)
+                    StatsClick(&state);
+                break;
+            default:
+                // TODO: Add an error message.
+                break;
+        }
         menu->button_hover=0;
         settings->button_hover=0;
         start_settings->button_hover=0;
