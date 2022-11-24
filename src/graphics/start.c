@@ -6,23 +6,55 @@
 #include "start.h"
 #include "constants.h"
 
-void DrawStartMenu(Menu *menu,double width, double height){
+void InitStartMenu(Menu *menu, int screen_width, int screen_height){
+    menu->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_MENU_BUTTONS);
+    menu->title = "RTS Minesweeper";
+    menu->menu_button_array[0].text="START";
+    menu->menu_button_array[1].text="SETTINGS";
+    menu->menu_button_array[2].text="STATISTICS";
+    menu->menu_button_array[3].text="QUIT";
     for(int i=0; i<NUM_MENU_BUTTONS;i++){
-        Vector2 position;
-        position.x =menu->menu_button_array[i].bounds.x;
-        position.y =menu->menu_button_array[i].bounds.y;
-        Vector2 text_position;
-        text_position.x = position.x+(menu->menu_button_array[i].button_width/2.0f)-((float)MeasureText(menu->menu_button_array[i].text,FONT_SIZE_BUT))/2.0f;
-        text_position.y= position.y+(menu->menu_button_array[i].button_height/2.0f);
-        DrawRectangleRec(menu->menu_button_array[i].bounds,BLACK);
-        DrawText(menu->menu_button_array[i].text,text_position.x,text_position.y,FONT_SIZE_BUT,RAYWHITE);
-        
+        menu->menu_button_array[i].button_width =((float)screen_width/5);
+        menu->menu_button_array[i].button_height = ((float)screen_height/10);
     }
-    Vector2 title_position;
-    title_position.x = width/2-((float)MeasureText(menu->title,FONT_SIZE_TITLE))/2;
-    title_position.y = height/10;
-    DrawText(menu->title,title_position.x,title_position.y,FONT_SIZE_TITLE,BLACK);
+    menu->button_hover=0;
+    SetMenuBounds(menu,screen_width,screen_height);
 }
+
+void InitStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height){
+    start_settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
+    start_settings->menu_button_array[0].text="BACK";
+    start_settings->menu_button_array[1].text="PLAY";
+    for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
+        start_settings->menu_button_array[i].button_width =((float)screen_width/5);
+        start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
+    }
+    start_settings->button_hover=0;
+    SetStartGameBounds(start_settings,screen_width,screen_height);
+}
+
+void InitSettings(Settings *settings, int screen_width, int screen_height){
+    settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
+    settings->menu_button_array[0].text="BACK";
+    settings->menu_button_array[1].text="APPLY";
+    for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
+        settings->menu_button_array[i].button_width =((float)screen_width/5);
+        settings->menu_button_array[i].button_height = ((float)screen_height/10);
+    }
+    settings->button_hover=0;
+    SetSettingsBounds(settings,screen_width,screen_height);
+}
+
+void InitStatistics(Statistics *statistics, int screen_width, int screen_height){
+    statistics->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton));
+    statistics->menu_button_array[0].text="BACK";
+    statistics->menu_button_array[0].button_width =((float)screen_width/5);
+    statistics->menu_button_array[0].button_height = ((float)screen_height/10);
+    statistics->button_hover=0;
+    SetStatsBounds(statistics,screen_width,screen_height);
+}
+
+
 void SetMenuBounds(Menu *menu,double width,double height){
     Rectangle start_bounds = {(width/2.0f-menu->menu_button_array[0].button_width/2.0f),height/4.0f,menu->menu_button_array[0].button_width,
     menu->menu_button_array[0].button_height};
@@ -77,6 +109,23 @@ void SetStatsBounds(Statistics *stats,double width,double height){
     (position.y+height/1.5f)-stats->menu_button_array[0].button_height-stats->menu_button_array[0].button_height/7.0f,
     stats->menu_button_array[0].button_width,stats->menu_button_array[0].button_height};
     stats->menu_button_array[0].bounds=back_bounds;
+}
+void DrawStartMenu(Menu *menu,double width, double height){
+    for(int i=0; i<NUM_MENU_BUTTONS;i++){
+        Vector2 position;
+        position.x =menu->menu_button_array[i].bounds.x;
+        position.y =menu->menu_button_array[i].bounds.y;
+        Vector2 text_position;
+        text_position.x = position.x+(menu->menu_button_array[i].button_width/2.0f)-((float)MeasureText(menu->menu_button_array[i].text,FONT_SIZE_BUT))/2.0f;
+        text_position.y= position.y+(menu->menu_button_array[i].button_height/2.0f);
+        DrawRectangleRec(menu->menu_button_array[i].bounds,BLACK);
+        DrawText(menu->menu_button_array[i].text,text_position.x,text_position.y,FONT_SIZE_BUT,RAYWHITE);
+        
+    }
+    Vector2 title_position;
+    title_position.x = width/2-((float)MeasureText(menu->title,FONT_SIZE_TITLE))/2;
+    title_position.y = height/10;
+    DrawText(menu->title,title_position.x,title_position.y,FONT_SIZE_TITLE,BLACK);
 }
 void DrawStartGameSettings(StartSettings *start_settings,double width, double height){
     Vector2 position;

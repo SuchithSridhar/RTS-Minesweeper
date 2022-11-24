@@ -4,6 +4,15 @@
 #include "../../include/raylib.h"
 
 #include "tmp_structs.h"
+#include "constants.h"
+
+void InitStartMenu(Menu *menu, int screen_width, int screen_height);
+
+void InitStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height);
+
+void InitSettings(Settings *settings, int screen_width, int screen_height);
+
+void InitStatistics(Statistics *statistics, int screen_width, int screen_height);
 
 
 void DrawStartMenu(Menu *menu,double width,double height);
