@@ -5,6 +5,7 @@
 #define FONT_SIZE_TITLE 40
 #define NUM_MENU_BUTTONS 4
 #define NUM_SETTINGS_BUTTONS 2
-
+#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 800
 
 #endif

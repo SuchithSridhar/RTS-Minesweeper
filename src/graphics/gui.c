@@ -8,8 +8,8 @@
 #include "tmp_structs.h"
 #include "constants.h"
 #include "start.h"
-int screen_width = 800;
-int screen_height = 800;
+int screen_width = SCREEN_WIDTH;
+int screen_height = SCREEN_HEIGHT;
 char title[] = "Minesweeper RTS";
 
 int state = STATE_START;
