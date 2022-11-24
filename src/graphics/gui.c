@@ -64,63 +64,22 @@ void runGameGui() {
         switch (state){
             case(STATE_START):
                 DrawStartMenu(menu,screen_width,screen_height);
-                if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds)
-                ||CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)
-                ||CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)
-                ||CheckCollisionPointRec(*mp,menu->menu_button_array[3].bounds))){
-                    if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds))){
-                        MouseHoverButton(&menu->menu_button_array[0]);
-                        menu->button_hover=1;
-                    }
-                    else if(CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)){
-                        MouseHoverButton(&menu->menu_button_array[1]);
-                        menu->button_hover=2;
-                    }
-                    else if(CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)){
-                        MouseHoverButton(&menu->menu_button_array[2]);
-                        menu->button_hover=3;
-                    }
-                    else{
-                        MouseHoverButton(&menu->menu_button_array[3]);
-                        menu->button_hover=4;
-                    }
-                }
+                StartHover(mp,menu);
                 break;
             case(STATE_START_SETTINGS):
                 DrawStartGameSettings(start_settings,screen_width,screen_height);
-                if(CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,start_settings->menu_button_array[1].bounds)){
-                    if((CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds))){
-                        MouseHoverButton(&start_settings->menu_button_array[0]);
-                        start_settings->button_hover=1;
-                    }
-                    else{
-                        MouseHoverButton(&start_settings->menu_button_array[1]);
-                        start_settings->button_hover=2;
-                    }
-                }
+                StartSettingsHover(mp,start_settings);
                 break;
             case(STATE_GAME):
                 // TODO: Add a draw game function
                 break;
             case(STATE_SETTINGS):
                 DrawSettings(settings,screen_width,screen_height);
-                if(CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,settings->menu_button_array[1].bounds)){
-                    if((CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds))){
-                        MouseHoverButton(&settings->menu_button_array[0]);
-                        settings->button_hover=1;
-                    }
-                    else{
-                        MouseHoverButton(&settings->menu_button_array[1]);
-                        settings->button_hover=2;
-                    }
-                }
+                SettingsHover(mp,settings);
                 break;
             case(STATE_STATISTICS):
                 DrawStatistics(statistics,screen_width,screen_height);
-                if(CheckCollisionPointRec(*mp,statistics->menu_button_array[0].bounds)){
-                    MouseHoverButton(&statistics->menu_button_array[0]);
-                    statistics->button_hover=1;
-                }   
+                StatisticsHover(mp,statistics);
                 break;
             case(STATE_EXIT):
                 ExitGame();

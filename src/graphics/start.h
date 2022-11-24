@@ -35,6 +35,15 @@ void SetStatsBounds(Statistics *stats,double width,double height);
 
 void MouseHoverButton(MenuButton *button);
 
+void StartHover(Vector2 *mp,Menu *menu);
+
+void StartSettingsHover(Vector2 *mp,StartSettings *start_settings);
+
+void SettingsHover(Vector2 *mp,Settings *settings);
+
+void StatisticsHover(Vector2 *mp, Statistics *statistics);
+
+
 void MenuClick(Menu *menu,int *state);
 
 void StartGameClick(StartSettings *start_settings,int *state);

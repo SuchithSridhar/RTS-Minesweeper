@@ -183,6 +183,62 @@ void MouseHoverButton(MenuButton *button){
     text_position.y = button->bounds.y+(button->bounds.height/2.0f);
     DrawText(button->text,text_position.x,text_position.y,FONT_SIZE_BUT,YELLOW);
 }
+void StartHover(Vector2 *mp,Menu *menu){
+    if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds)
+    ||CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)
+    ||CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)
+    ||CheckCollisionPointRec(*mp,menu->menu_button_array[3].bounds))){
+        if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds))){
+            MouseHoverButton(&menu->menu_button_array[0]);
+            menu->button_hover=1;
+        }
+        else if(CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)){
+            MouseHoverButton(&menu->menu_button_array[1]);
+            menu->button_hover=2;
+        }
+        else if(CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)){
+            MouseHoverButton(&menu->menu_button_array[2]);
+            menu->button_hover=3;
+        }
+        else{
+            MouseHoverButton(&menu->menu_button_array[3]);
+            menu->button_hover=4;
+        }
+    }
+}
+
+void StartSettingsHover(Vector2 *mp,StartSettings *start_settings){
+    if(CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,start_settings->menu_button_array[1].bounds)){
+        if((CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds))){
+            MouseHoverButton(&start_settings->menu_button_array[0]);
+            start_settings->button_hover=1;
+        }
+        else{
+            MouseHoverButton(&start_settings->menu_button_array[1]);
+            start_settings->button_hover=2;
+        }
+    }
+}
+
+void SettingsHover(Vector2 *mp,Settings *settings){
+    if(CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,settings->menu_button_array[1].bounds)){
+        if((CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds))){
+            MouseHoverButton(&settings->menu_button_array[0]);
+            settings->button_hover=1;
+        }
+        else{
+            MouseHoverButton(&settings->menu_button_array[1]);
+            settings->button_hover=2;
+        }
+    }
+}
+
+void StatisticsHover(Vector2 *mp, Statistics *statistics){
+    if(CheckCollisionPointRec(*mp,statistics->menu_button_array[0].bounds)){
+        MouseHoverButton(&statistics->menu_button_array[0]);
+        statistics->button_hover=1;
+    }   
+}
 void MenuClick(Menu *menu,int *state){
     switch (menu->button_hover){
         case(1):
