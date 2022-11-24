@@ -10,7 +10,7 @@
 #include "start.h"
 int screen_width = SCREEN_WIDTH;
 int screen_height = SCREEN_HEIGHT;
-char title[] = "Minesweeper RTS";
+char title[] = TITLE;
 
 int state = STATE_START;
 

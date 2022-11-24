@@ -8,11 +8,11 @@
 
 void InitStartMenu(Menu *menu, int screen_width, int screen_height){
     menu->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_MENU_BUTTONS);
-    menu->title = "RTS Minesweeper";
-    menu->menu_button_array[0].text="START";
-    menu->menu_button_array[1].text="SETTINGS";
-    menu->menu_button_array[2].text="STATISTICS";
-    menu->menu_button_array[3].text="QUIT";
+    menu->title = TITLE;
+    menu->menu_button_array[0].text=START_BUTTON_TITLE;
+    menu->menu_button_array[1].text=SETTINGS_BUTTON_TITLE;
+    menu->menu_button_array[2].text=STATS_BUTTON_TITLE;
+    menu->menu_button_array[3].text=QUIT_BUTTON_TITLE;
     for(int i=0; i<NUM_MENU_BUTTONS;i++){
         menu->menu_button_array[i].button_width =((float)screen_width/5);
         menu->menu_button_array[i].button_height = ((float)screen_height/10);
@@ -23,8 +23,8 @@ void InitStartMenu(Menu *menu, int screen_width, int screen_height){
 
 void InitStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height){
     start_settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
-    start_settings->menu_button_array[0].text="BACK";
-    start_settings->menu_button_array[1].text="PLAY";
+    start_settings->menu_button_array[0].text=BACK_BUTTON_TITLE;
+    start_settings->menu_button_array[1].text=START_BUTTON_TITLE;
     for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
         start_settings->menu_button_array[i].button_width =((float)screen_width/5);
         start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
@@ -35,7 +35,7 @@ void InitStartGameSettings(StartSettings *start_settings, int screen_width, int 
 
 void InitSettings(Settings *settings, int screen_width, int screen_height){
     settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
-    settings->menu_button_array[0].text="BACK";
+    settings->menu_button_array[0].text=BACK_BUTTON_TITLE;
     settings->menu_button_array[1].text="APPLY";
     for(int i=0; i<NUM_SETTINGS_BUTTONS;i++){
         settings->menu_button_array[i].button_width =((float)screen_width/5);
@@ -47,7 +47,7 @@ void InitSettings(Settings *settings, int screen_width, int screen_height){
 
 void InitStatistics(Statistics *statistics, int screen_width, int screen_height){
     statistics->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton));
-    statistics->menu_button_array[0].text="BACK";
+    statistics->menu_button_array[0].text=BACK_BUTTON_TITLE;
     statistics->menu_button_array[0].button_width =((float)screen_width/5);
     statistics->menu_button_array[0].button_height = ((float)screen_height/10);
     statistics->button_hover=0;
