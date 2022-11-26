@@ -6,7 +6,7 @@
 #include "start.h"
 #include "constants.h"
 
-void InitStartMenu(Menu *menu, int screen_width, int screen_height){
+void initStartMenu(Menu *menu, int screen_width, int screen_height){
     menu->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_MENU_BUTTONS);
     menu->title = TITLE;
     menu->menu_button_array[0].text=START_BUTTON_TITLE;
@@ -18,10 +18,10 @@ void InitStartMenu(Menu *menu, int screen_width, int screen_height){
         menu->menu_button_array[i].button_height = ((float)screen_height/10);
     }
     menu->button_hover=0;
-    SetMenuBounds(menu,screen_width,screen_height);
+    setMenuBounds(menu,screen_width,screen_height);
 }
 
-void InitStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height){
+void initStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height){
     start_settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
     start_settings->menu_button_array[0].text=BACK_BUTTON_TITLE;
     start_settings->menu_button_array[1].text=START_BUTTON_TITLE;
@@ -30,10 +30,10 @@ void InitStartGameSettings(StartSettings *start_settings, int screen_width, int 
         start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
     start_settings->button_hover=0;
-    SetStartGameBounds(start_settings,screen_width,screen_height);
+    setStartGameBounds(start_settings,screen_width,screen_height);
 }
 
-void InitSettings(Settings *settings, int screen_width, int screen_height){
+void initSettings(Settings *settings, int screen_width, int screen_height){
     settings->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_SETTINGS_BUTTONS);
     settings->menu_button_array[0].text=BACK_BUTTON_TITLE;
     settings->menu_button_array[1].text="APPLY";
@@ -42,20 +42,20 @@ void InitSettings(Settings *settings, int screen_width, int screen_height){
         settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
     settings->button_hover=0;
-    SetSettingsBounds(settings,screen_width,screen_height);
+    setSettingsBounds(settings,screen_width,screen_height);
 }
 
-void InitStatistics(Statistics *statistics, int screen_width, int screen_height){
+void initStatistics(Statistics *statistics, int screen_width, int screen_height){
     statistics->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton));
     statistics->menu_button_array[0].text=BACK_BUTTON_TITLE;
     statistics->menu_button_array[0].button_width =((float)screen_width/5);
     statistics->menu_button_array[0].button_height = ((float)screen_height/10);
     statistics->button_hover=0;
-    SetStatsBounds(statistics,screen_width,screen_height);
+    setStatsBounds(statistics,screen_width,screen_height);
 }
 
 
-void SetMenuBounds(Menu *menu,double width,double height){
+void setMenuBounds(Menu *menu,double width,double height){
     Rectangle start_bounds = {(width/2.0f-menu->menu_button_array[0].button_width/2.0f),height/4.0f,menu->menu_button_array[0].button_width,
     menu->menu_button_array[0].button_height};
     Rectangle settings_bounds = {(width/2.0f-menu->menu_button_array[1].button_width/2.0f),(height/2.0f - menu->menu_button_array[1].button_height/2.0f)/NUM_MENU_BUTTONS 
@@ -70,7 +70,7 @@ void SetMenuBounds(Menu *menu,double width,double height){
     menu->menu_button_array[2].bounds=statistics_bounds;
     menu->menu_button_array[3].bounds=exit_bounds;
 }
-void SetStartGameBounds(StartSettings *start_settings,double width,double height){
+void setStartGameBounds(StartSettings *start_settings,double width,double height){
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
     position.y = (height/2.0f-height/3.5f);
@@ -85,7 +85,7 @@ void SetStartGameBounds(StartSettings *start_settings,double width,double height
     start_settings->menu_button_array[1].bounds=start_game_bounds;
 }
 
-void SetSettingsBounds(Settings *settings,double width,double height){
+void setSettingsBounds(Settings *settings,double width,double height){
     
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
@@ -101,7 +101,7 @@ void SetSettingsBounds(Settings *settings,double width,double height){
     settings->menu_button_array[1].bounds=apply_bounds;
 }
 
-void SetStatsBounds(Statistics *stats,double width,double height){
+void setStatsBounds(Statistics *stats,double width,double height){
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
     position.y = (height/2.0f-height/3.5f);
@@ -110,7 +110,7 @@ void SetStatsBounds(Statistics *stats,double width,double height){
     stats->menu_button_array[0].button_width,stats->menu_button_array[0].button_height};
     stats->menu_button_array[0].bounds=back_bounds;
 }
-void DrawStartMenu(Menu *menu,double width, double height){
+void drawStartMenu(Menu *menu,double width, double height){
     for(int i=0; i<NUM_MENU_BUTTONS;i++){
         Vector2 position;
         position.x =menu->menu_button_array[i].bounds.x;
@@ -127,7 +127,7 @@ void DrawStartMenu(Menu *menu,double width, double height){
     title_position.y = height/10;
     DrawText(menu->title,title_position.x,title_position.y,FONT_SIZE_TITLE,BLACK);
 }
-void DrawStartGameSettings(StartSettings *start_settings,double width, double height){
+void drawStartGameSettings(StartSettings *start_settings,double width, double height){
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
     position.y = (height/2.0f-height/3.5f);
@@ -144,7 +144,7 @@ void DrawStartGameSettings(StartSettings *start_settings,double width, double he
     start_settings->menu_button_array[1].bounds.y+start_settings->menu_button_array[1].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
 }
 
-void DrawSettings(Settings *settings,double width, double height){
+void drawSettings(Settings *settings,double width, double height){
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
     position.y = (height/2.0f-height/3.5f);
@@ -160,7 +160,7 @@ void DrawSettings(Settings *settings,double width, double height){
     settings->menu_button_array[1].bounds.y+settings->menu_button_array[1].bounds.height/2.0f,FONT_SIZE_BUT,RAYWHITE);
 }
 
-void DrawStatistics(Statistics *stats,double width, double height){
+void drawStatistics(Statistics *stats,double width, double height){
     Vector2 position;
     position.x = (width/2.0f-width/4.0f);
     position.y = (height/2.0f-height/3.5f);
@@ -170,12 +170,12 @@ void DrawStatistics(Statistics *stats,double width, double height){
     stats->menu_button_array[0].bounds.y+stats->menu_button_array[0].bounds.height/2.0f,FONT_SIZE_BUT,WHITE);
 
 }
-void ExitGame(){
+void exitGame(){
     EndDrawing();
     CloseWindow();
     exit(0);
 }
-void MouseHoverButton(MenuButton *button){
+void mouseHoverButton(MenuButton *button){
     DrawRectangleRec(button->bounds,DARKGRAY);
     Vector2 text_position;
     text_position.x = button->bounds.x
@@ -183,63 +183,63 @@ void MouseHoverButton(MenuButton *button){
     text_position.y = button->bounds.y+(button->bounds.height/2.0f);
     DrawText(button->text,text_position.x,text_position.y,FONT_SIZE_BUT,YELLOW);
 }
-void StartHover(Vector2 *mp,Menu *menu){
+void startHover(Vector2 *mp,Menu *menu){
     if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds)
     ||CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)
     ||CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)
     ||CheckCollisionPointRec(*mp,menu->menu_button_array[3].bounds))){
         if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds))){
-            MouseHoverButton(&menu->menu_button_array[0]);
+            mouseHoverButton(&menu->menu_button_array[0]);
             menu->button_hover=1;
         }
         else if(CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)){
-            MouseHoverButton(&menu->menu_button_array[1]);
+            mouseHoverButton(&menu->menu_button_array[1]);
             menu->button_hover=2;
         }
         else if(CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)){
-            MouseHoverButton(&menu->menu_button_array[2]);
+            mouseHoverButton(&menu->menu_button_array[2]);
             menu->button_hover=3;
         }
         else{
-            MouseHoverButton(&menu->menu_button_array[3]);
+            mouseHoverButton(&menu->menu_button_array[3]);
             menu->button_hover=4;
         }
     }
 }
 
-void StartSettingsHover(Vector2 *mp,StartSettings *start_settings){
+void startSettingsHover(Vector2 *mp,StartSettings *start_settings){
     if(CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,start_settings->menu_button_array[1].bounds)){
         if((CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds))){
-            MouseHoverButton(&start_settings->menu_button_array[0]);
+            mouseHoverButton(&start_settings->menu_button_array[0]);
             start_settings->button_hover=1;
         }
         else{
-            MouseHoverButton(&start_settings->menu_button_array[1]);
+            mouseHoverButton(&start_settings->menu_button_array[1]);
             start_settings->button_hover=2;
         }
     }
 }
 
-void SettingsHover(Vector2 *mp,Settings *settings){
+void settingsHover(Vector2 *mp,Settings *settings){
     if(CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,settings->menu_button_array[1].bounds)){
         if((CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds))){
-            MouseHoverButton(&settings->menu_button_array[0]);
+            mouseHoverButton(&settings->menu_button_array[0]);
             settings->button_hover=1;
         }
         else{
-            MouseHoverButton(&settings->menu_button_array[1]);
+            mouseHoverButton(&settings->menu_button_array[1]);
             settings->button_hover=2;
         }
     }
 }
 
-void StatisticsHover(Vector2 *mp, Statistics *statistics){
+void statisticsHover(Vector2 *mp, Statistics *statistics){
     if(CheckCollisionPointRec(*mp,statistics->menu_button_array[0].bounds)){
-        MouseHoverButton(&statistics->menu_button_array[0]);
+        mouseHoverButton(&statistics->menu_button_array[0]);
         statistics->button_hover=1;
     }   
 }
-void MenuClick(Menu *menu,int *state){
+void menuClick(Menu *menu,int *state){
     switch (menu->button_hover){
         case(1):
             *state=1;
@@ -257,7 +257,7 @@ void MenuClick(Menu *menu,int *state){
             break;
     }
 }
-void StartGameClick(StartSettings *start_settings, int *state){
+void startGameClick(StartSettings *start_settings, int *state){
     switch (start_settings->button_hover){
         case(1):
             *state=0;
@@ -270,7 +270,7 @@ void StartGameClick(StartSettings *start_settings, int *state){
     }
 }
 
-void SettingsClick(Settings *settings,int *state){
+void settingsClick(Settings *settings,int *state){
     switch (settings->button_hover){
         case(1):
             *state=0;
@@ -283,6 +283,6 @@ void SettingsClick(Settings *settings,int *state){
     }
 }
 
-void StatsClick(int *state){
+void statsClick(int *state){
     *state=0;
 }

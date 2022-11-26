@@ -20,10 +20,10 @@ void runGameGui() {
     Settings *settings =(Settings*) malloc(sizeof(settings));
     Statistics *statistics =(Statistics*) malloc(sizeof(statistics));
 
-    InitStartMenu(menu,screen_width,screen_height);
-    InitStartGameSettings(start_settings,screen_width,screen_height);
-    InitSettings(settings,screen_width,screen_height);
-    InitStatistics(statistics,screen_width,screen_height);
+    initStartMenu(menu,screen_width,screen_height);
+    initStartGameSettings(start_settings,screen_width,screen_height);
+    initSettings(settings,screen_width,screen_height);
+    initStatistics(statistics,screen_width,screen_height);
     InitWindow(screen_width, screen_height, title);
 
     SetTargetFPS(60);
@@ -34,22 +34,22 @@ void runGameGui() {
                 switch (state){
             case(STATE_START):
                 if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&menu->button_hover>0)
-                    MenuClick(menu,&state);
+                    menuClick(menu,&state);
                 break;
             case(STATE_START_SETTINGS):
                 if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&start_settings->button_hover>0)
-                    StartGameClick(start_settings,&state);
+                    startGameClick(start_settings,&state);
                 break;
             case(STATE_GAME):
                 // TODO: Add a click function for in game state
                 break;
             case(STATE_SETTINGS):
                 if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&settings->button_hover>0)
-                    SettingsClick(settings,&state);
+                    settingsClick(settings,&state);
                 break;
             case(STATE_STATISTICS):
                 if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&statistics->button_hover==1)
-                    StatsClick(&state);
+                    statsClick(&state);
                 break;
             default:
                 // TODO: Add an error message.
@@ -63,26 +63,26 @@ void runGameGui() {
         ClearBackground(RAYWHITE);
         switch (state){
             case(STATE_START):
-                DrawStartMenu(menu,screen_width,screen_height);
-                StartHover(mp,menu);
+                drawStartMenu(menu,screen_width,screen_height);
+                startHover(mp,menu);
                 break;
             case(STATE_START_SETTINGS):
-                DrawStartGameSettings(start_settings,screen_width,screen_height);
-                StartSettingsHover(mp,start_settings);
+                drawStartGameSettings(start_settings,screen_width,screen_height);
+                startSettingsHover(mp,start_settings);
                 break;
             case(STATE_GAME):
                 // TODO: Add a draw game function
                 break;
             case(STATE_SETTINGS):
-                DrawSettings(settings,screen_width,screen_height);
-                SettingsHover(mp,settings);
+                drawSettings(settings,screen_width,screen_height);
+                settingsHover(mp,settings);
                 break;
             case(STATE_STATISTICS):
-                DrawStatistics(statistics,screen_width,screen_height);
-                StatisticsHover(mp,statistics);
+                drawStatistics(statistics,screen_width,screen_height);
+                statisticsHover(mp,statistics);
                 break;
             case(STATE_EXIT):
-                ExitGame();
+                exitGame();
                 break;
             default:
                 // TODO: Add an error message.

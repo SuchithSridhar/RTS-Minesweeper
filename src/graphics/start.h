@@ -6,52 +6,52 @@
 #include "tmp_structs.h"
 #include "constants.h"
 
-void InitStartMenu(Menu *menu, int screen_width, int screen_height);
+void initStartMenu(Menu *menu, int screen_width, int screen_height);
 
-void InitStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height);
+void initStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height);
 
-void InitSettings(Settings *settings, int screen_width, int screen_height);
+void initSettings(Settings *settings, int screen_width, int screen_height);
 
-void InitStatistics(Statistics *statistics, int screen_width, int screen_height);
-
-
-void DrawStartMenu(Menu *menu,double width,double height);
-
-void DrawStartGameSettings(StartSettings *start_settings,double width, double height);
-
-void DrawSettings(Settings *settings, double width, double height);
-
-void DrawStatistics(Statistics *statistics, double width, double height);
+void initStatistics(Statistics *statistics, int screen_width, int screen_height);
 
 
-void SetMenuBounds(Menu *menu,double width,double height);
+void drawStartMenu(Menu *menu,double width,double height);
 
-void SetStartGameBounds(StartSettings *start_settings,double width,double height);
+void drawStartGameSettings(StartSettings *start_settings,double width, double height);
 
-void SetSettingsBounds(Settings *settings,double width,double height);
+void drawSettings(Settings *settings, double width, double height);
 
-void SetStatsBounds(Statistics *stats,double width,double height);
-
-
-void MouseHoverButton(MenuButton *button);
-
-void StartHover(Vector2 *mp,Menu *menu);
-
-void StartSettingsHover(Vector2 *mp,StartSettings *start_settings);
-
-void SettingsHover(Vector2 *mp,Settings *settings);
-
-void StatisticsHover(Vector2 *mp, Statistics *statistics);
+void drawStatistics(Statistics *statistics, double width, double height);
 
 
-void MenuClick(Menu *menu,int *state);
+void setMenuBounds(Menu *menu,double width,double height);
 
-void StartGameClick(StartSettings *start_settings,int *state);
+void setStartGameBounds(StartSettings *start_settings,double width,double height);
 
-void SettingsClick(Settings *settings,int *state);
+void setSettingsBounds(Settings *settings,double width,double height);
 
-void StatsClick(int *state);
+void setStatsBounds(Statistics *stats,double width,double height);
 
-void ExitGame();
+
+void mouseHoverButton(MenuButton *button);
+
+void startHover(Vector2 *mp,Menu *menu);
+
+void startSettingsHover(Vector2 *mp,StartSettings *start_settings);
+
+void settingsHover(Vector2 *mp,Settings *settings);
+
+void statisticsHover(Vector2 *mp, Statistics *statistics);
+
+
+void menuClick(Menu *menu,int *state);
+
+void startGameClick(StartSettings *start_settings,int *state);
+
+void settingsClick(Settings *settings,int *state);
+
+void statsClick(int *state);
+
+void exitGame();
 
 #endif
