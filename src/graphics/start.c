@@ -17,7 +17,7 @@ void initStartMenu(Menu *menu, int screen_width, int screen_height){
         menu->menu_button_array[i].button_width =((float)screen_width/5);
         menu->menu_button_array[i].button_height = ((float)screen_height/10);
     }
-    menu->button_hover=0;
+    menu->button_mouse_over=0;
     setMenuBounds(menu,screen_width,screen_height);
 }
 
@@ -29,7 +29,7 @@ void initStartGameSettings(StartSettings *start_settings, int screen_width, int 
         start_settings->menu_button_array[i].button_width =((float)screen_width/5);
         start_settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
-    start_settings->button_hover=0;
+    start_settings->button_mouse_over=0;
     setStartGameBounds(start_settings,screen_width,screen_height);
 }
 
@@ -41,7 +41,7 @@ void initSettings(Settings *settings, int screen_width, int screen_height){
         settings->menu_button_array[i].button_width =((float)screen_width/5);
         settings->menu_button_array[i].button_height = ((float)screen_height/10);
     }
-    settings->button_hover=0;
+    settings->button_mouse_over=0;
     setSettingsBounds(settings,screen_width,screen_height);
 }
 
@@ -50,7 +50,7 @@ void initStatistics(Statistics *statistics, int screen_width, int screen_height)
     statistics->menu_button_array[0].text=BACK_BUTTON_TITLE;
     statistics->menu_button_array[0].button_width =((float)screen_width/5);
     statistics->menu_button_array[0].button_height = ((float)screen_height/10);
-    statistics->button_hover=0;
+    statistics->button_mouse_over=0;
     setStatsBounds(statistics,screen_width,screen_height);
 }
 
@@ -190,19 +190,19 @@ void startHover(Vector2 *mp,Menu *menu){
     ||CheckCollisionPointRec(*mp,menu->menu_button_array[3].bounds))){
         if((CheckCollisionPointRec(*mp,menu->menu_button_array[0].bounds))){
             mouseHoverButton(&menu->menu_button_array[0]);
-            menu->button_hover=1;
+            menu->button_mouse_over=1;
         }
         else if(CheckCollisionPointRec(*mp,menu->menu_button_array[1].bounds)){
             mouseHoverButton(&menu->menu_button_array[1]);
-            menu->button_hover=2;
+            menu->button_mouse_over=2;
         }
         else if(CheckCollisionPointRec(*mp,menu->menu_button_array[2].bounds)){
             mouseHoverButton(&menu->menu_button_array[2]);
-            menu->button_hover=3;
+            menu->button_mouse_over=3;
         }
         else{
             mouseHoverButton(&menu->menu_button_array[3]);
-            menu->button_hover=4;
+            menu->button_mouse_over=4;
         }
     }
 }
@@ -211,11 +211,11 @@ void startSettingsHover(Vector2 *mp,StartSettings *start_settings){
     if(CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,start_settings->menu_button_array[1].bounds)){
         if((CheckCollisionPointRec(*mp,start_settings->menu_button_array[0].bounds))){
             mouseHoverButton(&start_settings->menu_button_array[0]);
-            start_settings->button_hover=1;
+            start_settings->button_mouse_over=1;
         }
         else{
             mouseHoverButton(&start_settings->menu_button_array[1]);
-            start_settings->button_hover=2;
+            start_settings->button_mouse_over=2;
         }
     }
 }
@@ -224,11 +224,11 @@ void settingsHover(Vector2 *mp,Settings *settings){
     if(CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds)||CheckCollisionPointRec(*mp,settings->menu_button_array[1].bounds)){
         if((CheckCollisionPointRec(*mp,settings->menu_button_array[0].bounds))){
             mouseHoverButton(&settings->menu_button_array[0]);
-            settings->button_hover=1;
+            settings->button_mouse_over=1;
         }
         else{
             mouseHoverButton(&settings->menu_button_array[1]);
-            settings->button_hover=2;
+            settings->button_mouse_over=2;
         }
     }
 }
@@ -236,11 +236,11 @@ void settingsHover(Vector2 *mp,Settings *settings){
 void statisticsHover(Vector2 *mp, Statistics *statistics){
     if(CheckCollisionPointRec(*mp,statistics->menu_button_array[0].bounds)){
         mouseHoverButton(&statistics->menu_button_array[0]);
-        statistics->button_hover=1;
+        statistics->button_mouse_over=1;
     }   
 }
 void menuClick(Menu *menu,int *state){
-    switch (menu->button_hover){
+    switch (menu->button_mouse_over){
         case(1):
             *state=1;
             break;
@@ -258,7 +258,7 @@ void menuClick(Menu *menu,int *state){
     }
 }
 void startGameClick(StartSettings *start_settings, int *state){
-    switch (start_settings->button_hover){
+    switch (start_settings->button_mouse_over){
         case(1):
             *state=0;
             break;
@@ -271,7 +271,7 @@ void startGameClick(StartSettings *start_settings, int *state){
 }
 
 void settingsClick(Settings *settings,int *state){
-    switch (settings->button_hover){
+    switch (settings->button_mouse_over){
         case(1):
             *state=0;
             break;

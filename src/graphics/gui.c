@@ -33,32 +33,32 @@ void runGameGui() {
         mousePos = GetMousePosition();
                 switch (state){
             case(STATE_START):
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&menu->button_hover>0)
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&menu->button_mouse_over>0)
                     menuClick(menu,&state);
                 break;
             case(STATE_START_SETTINGS):
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&start_settings->button_hover>0)
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&start_settings->button_mouse_over>0)
                     startGameClick(start_settings,&state);
                 break;
             case(STATE_GAME):
                 // TODO: Add a click function for in game state
                 break;
             case(STATE_SETTINGS):
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&settings->button_hover>0)
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&settings->button_mouse_over>0)
                     settingsClick(settings,&state);
                 break;
             case(STATE_STATISTICS):
-                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&statistics->button_hover==1)
+                if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT)&&statistics->button_mouse_over==1)
                     statsClick(&state);
                 break;
             default:
                 // TODO: Add an error message.
                 break;
         }
-        menu->button_hover=0;
-        settings->button_hover=0;
-        start_settings->button_hover=0;
-        statistics->button_hover=0;
+        menu->button_mouse_over=0;
+        settings->button_mouse_over=0;
+        start_settings->button_mouse_over=0;
+        statistics->button_mouse_over=0;
         BeginDrawing();
         ClearBackground(RAYWHITE);
         switch (state){
