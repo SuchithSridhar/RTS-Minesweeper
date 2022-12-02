@@ -8,9 +8,9 @@
 #include "tmp_structs.h"
 #include "constants.h"
 #include "start.h"
-int screen_width = SCREEN_WIDTH;
-int screen_height = SCREEN_HEIGHT;
-char title[] = TITLE;
+int screen_width = INITIAL_SCREEN_WIDTH;
+int screen_height = INITIAL_SCREEN_HEIGHT;
+char title[] = GAME_TITLE;
 
 int state = STATE_START;
 
