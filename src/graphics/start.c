@@ -8,7 +8,7 @@
 
 void initStartMenu(Menu *menu, int screen_width, int screen_height){
     menu->menu_button_array= (MenuButton*)malloc(sizeof(MenuButton)*NUM_MENU_BUTTONS);
-    menu->title = TITLE;
+    menu->title = GAME_TITLE;
     menu->menu_button_array[0].text=START_BUTTON_TITLE;
     menu->menu_button_array[1].text=SETTINGS_BUTTON_TITLE;
     menu->menu_button_array[2].text=STATS_BUTTON_TITLE;
