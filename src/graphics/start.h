@@ -5,80 +5,121 @@
 
 #include "constants.h"
 
-
-typedef struct MenuButton{
+typedef struct{
     char *text;
     float button_width;
     float button_height;
     Rectangle bounds;
 } MenuButton;
-typedef struct Menu{
-    Font (*TitleFont)(char*);
+typedef struct{
     char *title;
     MenuButton *menu_button_array;
     int button_mouse_over;
-} Menu;
-typedef struct Statistics{
+} StartMenu;
+typedef struct{
     MenuButton *menu_button_array;
     int button_mouse_over;
 } Statistics;
-typedef struct Settings{
+typedef struct{
     MenuButton *menu_button_array;
     int button_mouse_over;
 } Settings;
-typedef struct StartSettings{
+typedef struct{
     MenuButton *menu_button_array;
     int button_mouse_over;
 } StartSettings;
-
+typedef struct{
+    StartMenu *menu;
+    Statistics *statistics;
+    Settings *settings;
+    StartSettings *start_settings;
+} MenusBundle;
 /**
- * The initStartMenu method creates the initial data for the Menu struct
+ * The initMenusBundle method creates the initial data for the MenusBundle struct
+ * Memory is allocated using malloc and must be freed using the sibling function
+ * freeMenusBundle 
+ * @param screen_width represents the current screen width
+ * @param screen_height represents the current screen height
+ * @return returns a MenusBundle pointer which is to be used in the game.
+*/
+MenusBundle * initMenusBundle(int *screen_width, int *screen_height);
+/**
+ * The initStartMenu method creates the initial data for the StartMenu struct
  * Memory is allocated using malloc and must be freed using the sibling function
  * freeStartMenu 
- * @param menu pointer to a Menu struct
+ * @param menu_bundle pointer to a MenusBundle struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void initStartMenu(Menu *menu, int screen_width, int screen_height);
+void initStartMenu(MenusBundle *menu_bundle, int *screen_width, int *screen_height);
 
 /**
  * The initStartGameSettings method creates the initial data for the StartSettings struct
  * Memory is allocated using malloc and must be freed using the sibling function
  * freeStartGameSettings
- * @param start_settings pointer to a StartSettings struct
+ * @param menu_bundle pointer to a MenusBundle struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void initStartGameSettings(StartSettings *start_settings, int screen_width, int screen_height);
+void initStartGameSettings(MenusBundle *menu_bundle, int *screen_width, int *screen_height);
 
 /**
  * The initSettings method creates the initial data for the Settings struct
  * Memory is allocated using malloc and must be freed using the sibling function
  * freeSettings 
- * @param settings pointer to a Settings struct
+ * @param menu_bundle pointer to a MenusBundle struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void initSettings(Settings *settings, int screen_width, int screen_height);
+void initSettings(MenusBundle *menu_bundle, int *screen_width, int *screen_height);
 
 /**
  * The initStatistics method creates the initial data for the Statistics struct
  * Memory is allocated using malloc and must be freed using the sibling function
  * freeStatistics 
- * @param statistics pointer to a Statistics struct
+ * @param menu_bundle pointer to a MenusBundle struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void initStatistics(Statistics *statistics, int screen_width, int screen_height);
-
+void initStatistics(MenusBundle *menu_bundle, int *screen_width, int *screen_height);
 
 /**
- * The drawStartMenu method uses a Menu struct to draw the buttons and the title of the start menu
- * @param menu pointer to a Menu struct
+ * Frees the dynamically allocated memory assigned to the MenusBundle struct.
+ * @param menu_bundle pointer to a MenusBundle struct, to free
+*/
+void freeMenusBundle(MenusBundle *menu_bundle);
+
+/**
+ * Frees the dynamically allocated memory assigned to the StartMenu struct.
+ * @param menu a StartMenu pointer to free
+*/
+void freeStartMenu(StartMenu *menu);
+
+/**
+ * Frees the dynamically allocated memory assigned to the StartSettings struct.
+ * @param start_settings a StartSettings pointer to free
+*/
+void freeStartGameSettings(StartSettings *start_settings);
+
+/**
+ * Frees the dynamically allocated memory assigned to the Settings struct.
+ * @param settings a Settings pointer to free
+*/
+void freeSettings(Settings *settings);
+
+/**
+ * Frees the dynamically allocated memory assigned to the Statistics struct.
+ * @param statistics a Statistics pointer to free
+*/
+void freeStatistics(Statistics *statistics);
+
+/**
+ * The drawStartMenu method uses a StartMenu struct to draw the buttons and the title of the start menu
+ * @param menu pointer to a StartMenu struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void drawStartMenu(Menu *menu,double width,double height);
+void drawStartMenu(StartMenu *menu,int *screen_width,int *screen_height);
 
 /**
  * The drawStartGameSettings method uses a StartSettings struct to draw the buttons of the game initialization menu
@@ -86,7 +127,7 @@ void drawStartMenu(Menu *menu,double width,double height);
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void drawStartGameSettings(StartSettings *start_settings,double width, double height);
+void drawStartGameSettings(StartSettings *start_settings,int *screen_width, int *screen_height);
 
 /**
  * The drawSettings method uses a Settings struct to draw the buttons and GUI of the settings menu
@@ -94,7 +135,7 @@ void drawStartGameSettings(StartSettings *start_settings,double width, double he
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void drawSettings(Settings *settings, double width, double height);
+void drawSettings(Settings *settings, int *screen_width, int *screen_height);
 
 /**
  * The drawStatistics method uses a Statistics struct to draw the buttons of the statistics menu
@@ -102,15 +143,24 @@ void drawSettings(Settings *settings, double width, double height);
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void drawStatistics(Statistics *statistics, double width, double height);
+void drawStatistics(Statistics *statistics, int *screen_width, int *screen_height);
 
 /**
- * The setMenuBounds method sets creates the rectangle bounds for the buttons in the Menu struct
- * @param menu pointer to a Menu struct
+ * The handleGUIDraw method determines which draw method to call, and whether or not a button needs to be highlighted or not
+ * @param menu_bundle a pointer to a MenusBundle struct
+ * @param mp a pointer to a Vector2 struct representing the current position of the mouse. 
+ * @param state a pointer to an integer representing the state 
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void setMenuBounds(Menu *menu,double width,double height);
+void handleGUIDraw(MenusBundle *menu_bundle,Vector2 *mp,int *state,int *screen_width,int*screen_height);
+/**
+ * The setMenuBounds method sets creates the rectangle bounds for the buttons in the StartMenu struct
+ * @param menu pointer to a StartMenu struct
+ * @param screen_width represents the current screen width
+ * @param screen_height represents the current screen height
+*/
+void setMenuBounds(StartMenu *menu,int *screen_width,int*screen_height);
 
 /**
  * The setStartGameBounds method sets creates the rectangle bounds for the buttons in the StartSettings struct
@@ -118,7 +168,7 @@ void setMenuBounds(Menu *menu,double width,double height);
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void setStartGameBounds(StartSettings *start_settings,double width,double height);
+void setStartGameBounds(StartSettings *start_settings,int *screen_width,int *screen_height);
 
 /**
  * The setSettingsBounds method sets creates the rectangle bounds for the buttons in the Settings struct
@@ -126,7 +176,7 @@ void setStartGameBounds(StartSettings *start_settings,double width,double height
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void setSettingsBounds(Settings *settings,double width,double height);
+void setSettingsBounds(Settings *settings,int *screen_width,int *screen_height);
 
 /**
  * The setStatsBounds method sets creates the rectangle bounds for the buttons in the Statistics struct
@@ -134,7 +184,7 @@ void setSettingsBounds(Settings *settings,double width,double height);
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
 */
-void setStatsBounds(Statistics *stats,double width,double height);
+void setStatsBounds(Statistics *stats,int *screen_width,int *screen_height);
 
 /**
  * The mouseHoverButton changes the colour of a button which is being hovered
@@ -145,9 +195,9 @@ void mouseHoverButton(MenuButton *button);
 /**
  * The startHover method determines whether or not a button is being hovered, and if so change the button hover variable to reflect this
  * @param mp a pointer to a Vector2 struct representing the current mouse position
- * @param menu a pointer to a Menu struct
+ * @param menu a pointer to a StartMenu struct
 */
-void startHover(Vector2 *mp,Menu *menu);
+void startHover(Vector2 *mp,StartMenu *menu);
 
 /**
  * The startSettingsHover method determines whether or not a button is being hovered, and if so change the button hover variable to reflect this
@@ -171,32 +221,37 @@ void settingsHover(Vector2 *mp,Settings *settings);
 void statisticsHover(Vector2 *mp, Statistics *statistics);
 
 /**
- * The menuClick method changes the state depending on whether or not a click has occured over a state changing button
- * @param menu a pointer to a Menu struct
+ * The handleStateClicks method handles whether or not a click will result in a state change
+ * @param menu_bundle a pointer to a MenusBundle struct
+ * @param mp a pointer to a Vector2 struct representing the current position of the mouse. 
  * @param state a pointer to an integer representing the state
 */
-void menuClick(Menu *menu,int *state);
+void handleStateClicks(MenusBundle *menu_bundle,Vector2 *mp,int *state);
 
 /**
- * The startGameClick method changes the state depending on whether or not a click has occured over a state changing button
+ * The handleStartMenuClick method changes the state depending on whether or not a click has occured over a state changing button
+ * @param menu a pointer to a StartMenu struct
+ * @param state a pointer to an integer representing the state
+*/
+void handleStartMenuClick(StartMenu *menu,int *state);
+
+/**
+ * The handleStartGameClick method changes the state depending on whether or not a click has occured over a state changing button
  * @param start_settings a pointer to a StartSettings struct
  * @param state a pointer to an integer representing the state
 */
-void startGameClick(StartSettings *start_settings,int *state);
+void handleStartGameClick(StartSettings *start_settings,int *state);
 
 /**
- * The settingsClick method changes the state depending on whether or not a click has occured over a state changing button
+ * The handleSettingsClick method changes the state depending on whether or not a click has occured over a state changing button
  * @param settings a pointer to a Settings struct
  * @param state a pointer to an integer representing the state
 */
-void settingsClick(Settings *settings,int *state);
+void handleSettingsClick(Settings *settings,int *state);
 
 /**
- * The statsClick method changes the state depending on whether or not a click has occured over a state changing button
+ * The handleStatisticsClick method changes the state depending on whether or not a click has occured over a state changing button
  * @param state a pointer to an integer representing the state
 */
-void statsClick(int *state);
-
-void exitGame();
-
+void handleStatisticsClick(int *state);
 #endif
