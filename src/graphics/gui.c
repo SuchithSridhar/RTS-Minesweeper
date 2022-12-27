@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 
@@ -7,28 +7,24 @@
 #include "state.h"
 #include "constants.h"
 #include "start.h"
+#include "menu.h"
+
 int screen_width = INITIAL_SCREEN_WIDTH;
 int screen_height = INITIAL_SCREEN_HEIGHT;
 char title[] = GAME_TITLE;
 
 int state = STATE_START;
 
-void runGameGui() {
-
-    MenusBundle *menu_bundle = initMenusBundle(&screen_width,&screen_height);
+void runGameGui(){
+    MenusBundle *menu_bundle = initMenusBundle(&screen_width, &screen_height);
     InitWindow(screen_width, screen_height, title);
-
     SetTargetFPS(60);
-    Vector2 mousePos= {0.0f, 0.0f};
-    Vector2 *mp =&mousePos;
-    while (!WindowShouldClose()&&state!=STATE_EXIT) {
-        handleStateClicks(menu_bundle,mp,&state);
-        handleGUIDraw(menu_bundle,mp,&state,&screen_width,&screen_height);
+    Vector2 mousePos = {0.0f, 0.0f};
+    Vector2 *mp = &mousePos;
+    while (!WindowShouldClose() && state != STATE_EXIT){
+        handleStateClicks(menu_bundle, mp, &state);
+        handleGUIDraw(menu_bundle, mp, &state, &screen_width, &screen_height);
     }
-    freeSettings(menu_bundle->settings);
-    freeStartGameSettings(menu_bundle->start_settings);
-    freeStatistics(menu_bundle->statistics);
-    freeStartMenu(menu_bundle->menu);
-    freeMenusBundle(menu_bundle);
+    freeMemoryResources(menu_bundle);
     CloseWindow();
 }
