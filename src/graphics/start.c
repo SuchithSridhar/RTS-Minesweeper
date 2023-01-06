@@ -97,9 +97,6 @@ void freeMenuButtonArray(MenuButton *menu_button_array){
     free(menu_button_array);
 }
 
-void freeMemoryResources(MenusBundle *menu_bundle){
-    freeMenusBundle(menu_bundle);
-}
 Rectangle initMenuButtonBounds(float posx, float posy, float width, float height){
     Rectangle newRect = {posx, posy, width, height};
     return newRect;

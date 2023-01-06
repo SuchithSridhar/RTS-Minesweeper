@@ -117,12 +117,6 @@ Rectangle initMenuButtonBounds(float posx, float posy, float width, float height
 void freeMenuButtonArray(MenuButton *menu_button_array);
 
 /**
- * The freeMemoryResources function is a wrapper function which calls all of the other free functions
- * @param menu_bundle pointer to a MenusBundle struct, which holds resources to be freed.
- */
-void freeMemoryResources(MenusBundle *menu_bundle);
-
-/**
  * Frees the dynamically allocated memory assigned to the MenusBundle struct.
  * @param menu_bundle pointer to a MenusBundle struct, to free
  */

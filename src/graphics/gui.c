@@ -25,6 +25,6 @@ void runGameGui(){
         handleStateClicks(menu_bundle, mp, &state);
         handleGUIDraw(menu_bundle, mp, &state, &screen_width, &screen_height);
     }
-    freeMemoryResources(menu_bundle);
+    freeMenusBundle(menu_bundle);
     CloseWindow();
 }
