@@ -1,6 +1,8 @@
 #ifndef GAME_STRUCTS_H
 #define GAME_STRUCTS_H
 
+#include <stdbool.h>
+
 /* Holds data for single tile on the board. */
 typedef struct {
     /* x position of tile. */
