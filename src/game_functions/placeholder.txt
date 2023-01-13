@@ -1,3 +1,0 @@
-This file is just so that git recognizes this directory.
-Let's delete this file once we have a file other than
-the placeholder here.
