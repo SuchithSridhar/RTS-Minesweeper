@@ -25,9 +25,16 @@
 
 ## PR Reviewer Checklist
 
+- [ ] Move JIRA ticket to "PR testing".
 - [ ] Reviewed code changes.
 - [ ] Confirmed PR has been rebased recently.
 - [ ] Tested the changes listed by the developer.
 - [ ] Ensured conventions followed are according to project conventions.
 - [ ] Ensured test cases have been updated.
 - [ ] Ensured documentation has been updated.
+- [ ] Update JIRA ticket to "Waiting to merge".
+
+## Pre-Merge Checklist
+
+- [ ] Ensure that branch has been rebased recently.
+- [ ] Move ticket to "Done" once merge complete.
