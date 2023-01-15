@@ -1,19 +1,39 @@
+#include "board.h"
+
 #include <stdlib.h>
 #include <stdbool.h>
 
 #include "../include/raylib.h"
 #include "../include/raymath.h"
 
-#include "tmp_structs.h"
+#include "../tmp_structs.h"
+#include "../../game_functions/board_functions.h"
+#include "constants.h"
 
-#include "board.h"
+int handleBoardActionEvents (Board *board, Vector2 mouse_position, double width) {
+    float tile_width = ((float) width) / board->cols;
 
-int TILE_SIZE = 50;
+    int selected_tile_row = (int) (mouse_position.y / tile_width);
+    int selected_tile_col = (int) (mouse_position.x / tile_width);
 
-int drawBoard (Board *board, AssetManager *assets, double x_offset, double y_offset, double width) {
+    int selected_tile_index = calcIndexFromPosition(selected_tile_row,  selected_tile_col, board->cols);
+    bool gameEnd = false;
+
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        gameEnd = board->click(board, selected_tile_row, selected_tile_col);
+    } else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+        Tile *tile = board->tile_array + selected_tile_index;
+        tile->is_flagged = !tile->is_flagged;
+    }
+
+    return EXIT_SUCCESS;
+}
+
+
+int drawBoard (Board *board, AssetManager *assets, double x_offset, double y_offset, double width, double height) {
 
     float tile_width = ((float) width) / board->cols ;
-    float scale = tile_width / TILE_SIZE;
+    float scale = tile_width / TILE_IMAGE_SIZE;
     Vector2 position;
     Tile cur_tile;
     Texture2D asset_to_draw;

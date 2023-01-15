@@ -308,7 +308,7 @@ void statisticsHover(Vector2 *mp, Statistics *statistics){
 void handleStartMenuClick(StartMenu *menu, int *state){
     switch (menu->button_mouse_over){
     case (START_BUTTON_INTEGER + 1):
-        *state = STATE_GAMEPLAY;
+        *state = STATE_START_SETTINGS;
         break;
     case (SETTINGS_BUTTON_INTEGER + 1):
         *state = STATE_SETTINGS;
@@ -329,7 +329,7 @@ void handleStartGameClick(StartSettings *start_settings, int *state){
         *state = STATE_START;
         break;
     case (START_GAME_BUTTON_INTEGER + 1):
-        *state = STATE_GAMEPLAY;
+        *state = STATE_TRANSITION_GAMEPLAY;
         break;
     default:
         break;

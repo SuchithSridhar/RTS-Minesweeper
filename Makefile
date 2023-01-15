@@ -17,7 +17,10 @@ else
 	TARGET = minesweeper-rts
 endif
 
-DEPS__ = graphics/board.c graphics/gui.c graphics/start.c
+DEPS_GRAPHICS = graphics/gameplay.c graphics/gui.c graphics/start.c graphics/gameplay/board.c
+DEPS_GAME_FUNCTIONS = game_functions/board_functions.c
+
+DEPS__ = $(DEPS_GRAPHICS) $(DEPS_GAME_FUNCTIONS)
 DEPS = $(foreach dir, $(DEPS__), $(addprefix $(SRCDIR)/, $(dir)))
 
 .PHONY: clean run all
