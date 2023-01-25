@@ -22,7 +22,7 @@ void endGameplay(GameplayData *gameplay_data) {
     free(gameplay_data);
 }
 
-int handleGameplayDraw(GameplayData *gameplay_data, double screen_width, double screen_height) {
+int handleGameplayDraw(GameplayData *gameplay_data, int screen_width, int screen_height) {
     // Padding for the window edges.
     int X_OFFSET = BOARD_PADDING;
     int Y_OFFSET = BOARD_PADDING;
@@ -38,15 +38,15 @@ int handleGameplayDraw(GameplayData *gameplay_data, double screen_width, double 
     return EXIT_SUCCESS;
 }
 
-int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position, double screen_width, double screen_height) {
-    int X_OFFSET = BOARD_PADDING;
-    int Y_OFFSET = BOARD_PADDING;
+int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position, int screen_width, int screen_height) {
+    int x_offset = BOARD_PADDING;
+    int y_offset = BOARD_PADDING;
     if (
-        (mouse_position->x > X_OFFSET && mouse_position->x < screen_width - (2 * X_OFFSET)) &&
-        (mouse_position->y > Y_OFFSET && mouse_position->y < screen_width - (2 * Y_OFFSET))
+        (mouse_position->x > x_offset && mouse_position->x < screen_width - (2 * x_offset)) &&
+        (mouse_position->y > y_offset && mouse_position->y < screen_width - (2 * y_offset))
     ) {
-        Vector2 in_board_mouse = { mouse_position->x - X_OFFSET, mouse_position->y - Y_OFFSET };
-        handleBoardActionEvents(gameplay_data->board, in_board_mouse, screen_width - (2 * X_OFFSET));
+        Vector2 in_board_mouse = { mouse_position->x - x_offset, mouse_position->y - y_offset };
+        handleBoardActionEvents(gameplay_data->board, in_board_mouse, screen_width - (2 * x_offset));
     }
     return EXIT_SUCCESS;
 }

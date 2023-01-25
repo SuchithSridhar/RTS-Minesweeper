@@ -37,7 +37,7 @@ void endGameplay(GameplayData *gameplay_data);
  * @param screen_height represents the current height of the window.
  * @return An exit code for the function if necessary, returns 0 otherwise.
  */
-int handleGameplayDraw(GameplayData *gameplay_data, double screen_width, double screen_height);
+int handleGameplayDraw(GameplayData *gameplay_data, int screen_width, int screen_height);
 
 
 /**
@@ -47,7 +47,7 @@ int handleGameplayDraw(GameplayData *gameplay_data, double screen_width, double 
  * @param screen_height represents the current height of the window.
  * @return An exit code for the function if necessary, returns 0 otherwise.
  */
-int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position, double screen_width, double screen_height);
+int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position, int screen_width, int screen_height);
 
 
 #endif
