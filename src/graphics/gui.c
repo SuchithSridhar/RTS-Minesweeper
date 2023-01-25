@@ -28,15 +28,15 @@ void runGameGui() {
 
     // TODO: Move to a different file.
     AssetManager *assets = (AssetManager*) malloc(sizeof(AssetManager));
-    assets->tile_1 = LoadTexture("assets/tile-1.png");
-    assets->tile_2 = LoadTexture("assets/tile-2.png");
-    assets->tile_3 = LoadTexture("assets/tile-3.png");
-    assets->tile_4 = LoadTexture("assets/tile-4.png");
-    assets->tile_5 = LoadTexture("assets/tile-5.png");
-    assets->tile_opened = LoadTexture("assets/tile-opened.png");
-    assets->tile_closed = LoadTexture("assets/tile-closed.png");
-    assets->tile_flag = LoadTexture("assets/tile-flag.png");
-    assets->tile_bomb = LoadTexture("assets/tile-bomb.png");
+    assets->tile_1 = LoadTexture("assets/themes/playful/tile-1.png");
+    assets->tile_2 = LoadTexture("assets/themes/playful/tile-2.png");
+    assets->tile_3 = LoadTexture("assets/themes/playful/tile-3.png");
+    assets->tile_4 = LoadTexture("assets/themes/playful/tile-4.png");
+    assets->tile_5 = LoadTexture("assets/themes/playful/tile-5.png");
+    assets->tile_opened = LoadTexture("assets/themes/playful/tile-opened.png");
+    assets->tile_closed = LoadTexture("assets/themes/playful/tile-closed.png");
+    assets->tile_flag = LoadTexture("assets/themes/playful/tile-flag.png");
+    assets->tile_bomb = LoadTexture("assets/themes/playful/tile-bomb.png");
 
     while (!WindowShouldClose() && state != STATE_EXIT) {
 
