@@ -34,6 +34,9 @@ endif
 
 all: $(TARGET)
 
-$(TARGET): $(SRCDIR)/main.c
+$(TARGET): $(SRCDIR)/main.c bin_dir
 	$(CC) $(SRCDIR)/main.c $(DEPS) -o $(BUILDDIR)/$(TARGET) $(CFLAGS) 
+
+bin_dir:
+	mkdir $(BUILDDIR)
 
