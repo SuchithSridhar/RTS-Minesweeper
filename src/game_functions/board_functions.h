@@ -8,8 +8,8 @@
 
 /* struct used to return position given an index. */
 struct positionFromIndex {
-    int x;
-    int y;
+    int row;
+    int col;
 };
 
 
@@ -24,12 +24,12 @@ struct positionFromIndex calcPositionFromIndex (int index, int width);
 
 /**
  * Calculate index from a given x y position.
- * @param x the x position on the grid.
- * @param y the y position on the grid.
+ * @param row the row position on the grid.
+ * @param col the column position on the grid.
  * @param width the width of the grid.
  * @return the index that corresponds to the position.
  */
-int calcIndexFromPosition (int x, int y, int width);
+int calcIndexFromPosition (int row, int col, int width);
 
 
 /**
@@ -40,13 +40,13 @@ Tile* createTile ();
 
 
 /**
- * Initilize a Tile struct with the given values and some defaults.
- * @param tile A pointer to the tile to initilize.
- * @param x The x position of the tile.
- * @param y The y position of the tile.
+ * Initialize a Tile struct with the given values and some defaults.
+ * @param tile A pointer to the tile to initialize.
+ * @param row The row position of the tile.
+ * @param col The column position of the tile.
  * @param is_bomb true if tile is a bomb.
  */
-void initilizeTile (Tile *tile, int x, int y, bool is_bomb);
+void initilizeTile (Tile *tile, int row, int column, bool is_bomb);
 
 
 /**
@@ -65,7 +65,7 @@ Tile* createTileArray (int size);
 
 
 /**
- * Initilize all the tiles in a tile array with
+ * Initialize all the tiles in a tile array with
  * some default values.
  * @param tile_array a pointer to the start of the tile array.
  * @param size The size of the array.
@@ -82,7 +82,7 @@ void destroyTileArray (Tile *tile_array);
 
 
 /**
- * Create and initilize a board with some tiles.
+ * Create and initialize a board with some tiles.
  * @param width the width of the board to create.
  * @param height the height of the board to create.
  * @return a pointer to the board allocated on the heap.

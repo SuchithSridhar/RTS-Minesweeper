@@ -5,14 +5,14 @@
 
 struct positionFromIndex calcPositionFromIndex (int index, int width) {
     struct positionFromIndex return_val;
-    return_val.x = index / width;
-    return_val.y = index % width;
+    return_val.row = index / width;
+    return_val.col = index % width;
     return return_val;
 }
 
 
-int calcIndexFromPosition (int x, int y, int width) {
-    return (x * width) + y;
+int calcIndexFromPosition (int row, int col, int width) {
+    return (row * width) + col;
 }
 
 
@@ -22,15 +22,15 @@ Tile* createTile () {
 }
 
 
-void initilizeTile (Tile *tile, int x, int y, bool is_bomb) {
-    tile->x = x;
-    tile->y = y;
+void initilizeTile (Tile *tile, int row, int col, bool is_bomb) {
+    tile->row = row;
+    tile->col = col;
     
     // -1 represents bombs around
     tile->bombs_around = -1;
     tile->is_bomb = is_bomb;
     tile->is_flagged = false;
-    tile->is_open = true;
+    tile->is_open = false;
 }
 
 
@@ -49,7 +49,7 @@ void initilizeTileArray (Tile *tile_array, int size, int width) {
     struct positionFromIndex calc_pos;
     for (int i=0; i<size; i++) {
         calc_pos = calcPositionFromIndex(i, width);
-        initilizeTile(tile_array + i, calc_pos.x, calc_pos.y, false);
+        initilizeTile(tile_array + i, calc_pos.row, calc_pos.col, false);
     }
 }
 
@@ -59,12 +59,12 @@ void destroyTileArray (Tile *tile_array) {
 }
 
 
-bool handleBoardClick (Board *board, int x, int y) {
-    int index = calcIndexFromPosition(x, y, board->width);
+bool handleBoardClick (Board *board, int row, int col) {
+    int index = calcIndexFromPosition(row, col, board->cols);
     // Get the pointer to the tile at that index
     Tile *tile = board->tile_array + index;
 
-    tile->is_open = false;
+    tile->is_open = true;
     return tile->is_bomb;
 }
 
@@ -73,8 +73,8 @@ Board* createBoard (int width, int height) {
     Board* new_board = malloc(sizeof(Board));
     int size = width * height;
     new_board->array_size = size;
-    new_board->width = height;
-    new_board->height = width;
+    new_board->cols = height;
+    new_board->rows = width;
 
     new_board->tile_array = createTileArray(size);
     initilizeTileArray(new_board->tile_array, size, width);

@@ -168,33 +168,27 @@ void setStatsBounds(Statistics *stats, int *screen_width, int *screen_height){
 }
 
 void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state, int *screen_width, int *screen_height){
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
     switch (*state){
-    case (STATE_START):
-        drawStartMenu(menu_bundle->menu, screen_width, screen_height);
-        startHover(mp, menu_bundle->menu);
-        break;
-    case (STATE_START_SETTINGS):
-        drawStartGameSettings(menu_bundle->start_settings, screen_width, screen_height);
-        startSettingsHover(mp, menu_bundle->start_settings);
-        break;
-    case (STATE_GAME):
-        // TODO: Add a draw game function
-        break;
-    case (STATE_SETTINGS):
-        drawSettings(menu_bundle->settings, screen_width, screen_height);
-        settingsHover(mp, menu_bundle->settings);
-        break;
-    case (STATE_STATISTICS):
-        drawStatistics(menu_bundle->statistics, screen_width, screen_height);
-        statisticsHover(mp, menu_bundle->statistics);
-        break;
-    default:
-        // TODO: Add an error message.
-        break;
+        case (STATE_START):
+            drawStartMenu(menu_bundle->menu, screen_width, screen_height);
+            startHover(mp, menu_bundle->menu);
+            break;
+        case (STATE_START_SETTINGS):
+            drawStartGameSettings(menu_bundle->start_settings, screen_width, screen_height);
+            startSettingsHover(mp, menu_bundle->start_settings);
+            break;
+        case (STATE_SETTINGS):
+            drawSettings(menu_bundle->settings, screen_width, screen_height);
+            settingsHover(mp, menu_bundle->settings);
+            break;
+        case (STATE_STATISTICS):
+            drawStatistics(menu_bundle->statistics, screen_width, screen_height);
+            statisticsHover(mp, menu_bundle->statistics);
+            break;
+        default:
+            // TODO: Add an error message.
+            break;
     }
-    EndDrawing();
 }
 
 void drawMenuButton(MenuButton *menu_button){
@@ -335,7 +329,7 @@ void handleStartGameClick(StartSettings *start_settings, int *state){
         *state = STATE_START;
         break;
     case (START_GAME_BUTTON_INTEGER + 1):
-        *state = STATE_GAME;
+        *state = STATE_TRANSITION_GAMEPLAY;
         break;
     default:
         break;
@@ -368,9 +362,6 @@ void handleStateClicks(MenusBundle *menu_bundle, Vector2 *mp, int *state){
     case (STATE_START_SETTINGS):
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && menu_bundle->start_settings->button_mouse_over > NO_HOVER)
             handleStartGameClick(menu_bundle->start_settings, state);
-        break;
-    case (STATE_GAME):
-        // TODO: Add a click function for in game state
         break;
     case (STATE_SETTINGS):
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT) && menu_bundle->settings->button_mouse_over > NO_HOVER)

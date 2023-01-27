@@ -5,10 +5,10 @@
 
 /* Holds data for single tile on the board. */
 typedef struct {
-    /* x position of tile. */
-    int x;
-    /* y position of tile. */
-    int y;
+    /* row position of tile. */
+    int row;
+    /* col position of tile. */
+    int col;
 
     int bombs_around;
     bool is_bomb;
@@ -19,8 +19,8 @@ typedef struct {
 
 /* Hold data about the minesweeper board. */
 typedef struct Board {
-    int height;
-    int width;
+    int rows;
+    int cols;
 
     /* Size of tile array. */
     int array_size;
