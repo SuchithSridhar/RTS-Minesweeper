@@ -22,6 +22,7 @@ void runGameGui() {
     MenusBundle *menu_bundle = initMenusBundle(&screen_width, &screen_height);
     GameplayData *gameplay_data = NULL;
 
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(screen_width, screen_height, title);
     Vector2 mouse_position = {0.0f, 0.0f};
     SetTargetFPS(60);
@@ -39,7 +40,10 @@ void runGameGui() {
     assets->tile_bomb = LoadTexture("assets/themes/playful/tile-bomb.png");
 
     while (!WindowShouldClose() && state != STATE_EXIT) {
-
+        screen_width = GetScreenWidth();
+        screen_height = GetScreenHeight();
+        updateBounds(menu_bundle, &screen_width, &screen_height);
+        
         handleStateClicks(menu_bundle, &mouse_position, &state);
 
         // Pre-drawing operations based on current state.

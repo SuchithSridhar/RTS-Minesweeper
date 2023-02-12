@@ -5,8 +5,6 @@
 
 typedef struct {
     char *text;
-    float button_width;
-    float button_height;
     Rectangle bounds;
 } MenuButton;
 

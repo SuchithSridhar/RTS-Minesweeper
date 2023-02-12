@@ -24,8 +24,9 @@ int drawBoard(Board *board, AssetManager *assets, double x_offset,
  * @param mouse_position is the current mouse position, must start at 0 and end
  * at board width.
  * @param width is width of the board.
+ * @param height the height of the board
  * @return an exit code if necessary, else returns EXIT_SUCCESS.
  */
-int handleBoardActionEvents(Board *board, Vector2 mouse_position, double width);
+int handleBoardActionEvents (Board *board, Vector2 mouse_position, double width, double height);
 
 #endif
