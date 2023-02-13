@@ -6,11 +6,11 @@
 #include "gameplay.h"
 #include "tmp_structs.h"
 
-#include "gui.h"
-#include "state.h"
 #include "constants.h"
-#include "start.h"
+#include "gui.h"
 #include "menu.h"
+#include "start.h"
+#include "state.h"
 
 int screen_width = INITIAL_SCREEN_WIDTH;
 int screen_height = INITIAL_SCREEN_HEIGHT;
@@ -27,7 +27,7 @@ void runGameGui() {
     SetTargetFPS(60);
 
     // TODO: Move to a different file.
-    AssetManager *assets = (AssetManager*) malloc(sizeof(AssetManager));
+    AssetManager *assets = (AssetManager *)malloc(sizeof(AssetManager));
     assets->tile_1 = LoadTexture("assets/themes/playful/tile-1.png");
     assets->tile_2 = LoadTexture("assets/themes/playful/tile-2.png");
     assets->tile_3 = LoadTexture("assets/themes/playful/tile-3.png");
@@ -44,35 +44,36 @@ void runGameGui() {
 
         // Pre-drawing operations based on current state.
         switch (state) {
-            case STATE_GAMEPLAY:
-                handleGameplayActions(gameplay_data, &mouse_position, screen_width, screen_height);
-                break;
-            case STATE_TRANSITION_GAMEPLAY:
-                gameplay_data = initGameplay(assets);
-                state = STATE_GAMEPLAY;
-            default:
-                // TODO: Add an error message.
-                break;
+        case STATE_GAMEPLAY:
+            handleGameplayActions(gameplay_data, &mouse_position, screen_width,
+                                  screen_height);
+            break;
+        case STATE_TRANSITION_GAMEPLAY:
+            gameplay_data = initGameplay(assets);
+            state = STATE_GAMEPLAY;
+        default:
+            // TODO: Add an error message.
+            break;
         }
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        handleGUIDraw(menu_bundle, &mouse_position, &state, &screen_width, &screen_height);
+        handleGUIDraw(menu_bundle, &mouse_position, &state, &screen_width,
+                      &screen_height);
 
         // Handles drawing based on current state.
-        switch (state){
-            case STATE_GAMEPLAY:
-                handleGameplayDraw(gameplay_data, screen_width, screen_height);
-            default:
-                // TODO: Add an error message.
-                break;
+        switch (state) {
+        case STATE_GAMEPLAY:
+            handleGameplayDraw(gameplay_data, screen_width, screen_height);
+        default:
+            // TODO: Add an error message.
+            break;
         }
         EndDrawing();
     }
     freeMenusBundle(menu_bundle);
-    
+
     // TODO: Move to a different file.
     free(assets);
     CloseWindow();
-
 }

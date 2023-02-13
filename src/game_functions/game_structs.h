@@ -28,11 +28,11 @@ typedef struct Board {
     /* Holds the array of tiles. Represents a 2D grid. */
     Tile *tile_array;
 
-    /* 
+    /*
      * function to be called when tile clicked.
      * Returns true if game ends.
      */
-    bool (*click) (struct Board*, int, int);
+    bool (*click)(struct Board *, int, int);
 } Board;
 
 #endif

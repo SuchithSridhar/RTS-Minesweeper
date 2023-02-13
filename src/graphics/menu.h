@@ -12,7 +12,8 @@
 #define SETTINGS_BUTTON_TITLE "SETTINGS"
 #define QUIT_BUTTON_TITLE "QUIT"
 
-//These constants are used to represent the different buttons. Used for hover checking(add 1 to these) and array indexing
+// These constants are used to represent the different buttons. Used for hover
+// checking(add 1 to these) and array indexing
 #define START_BUTTON_INTEGER 0
 #define SETTINGS_BUTTON_INTEGER 1
 #define STATS_BUTTON_INTEGER 2
@@ -21,6 +22,6 @@
 #define APPLY_BUTTON_INTEGER 1
 #define START_GAME_BUTTON_INTEGER 1
 
-//This constant is used to represent that there was no hover detected
+// This constant is used to represent that there was no hover detected
 #define NO_HOVER 0
 #endif

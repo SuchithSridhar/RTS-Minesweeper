@@ -9,7 +9,7 @@
 #define STATE_START 0
 #define STATE_START_SETTINGS 1
 
-// State used to initialize gameplay 
+// State used to initialize gameplay
 #define STATE_TRANSITION_GAMEPLAY 2
 
 #define STATE_GAMEPLAY 3
