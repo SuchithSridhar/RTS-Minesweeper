@@ -22,6 +22,8 @@
 - [ ] Rebased branch in the past day.
 - [ ] Updated the documentation as necessary.
 - [ ] Updated test cases as necessary.
+- [ ] Formatting code using the `make format` command.
+- [ ] Generated docs using the `make gen_docs` command.
 
 ## PR Reviewer Checklist
 
