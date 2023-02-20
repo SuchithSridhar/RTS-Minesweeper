@@ -53,7 +53,7 @@ else
         OPEN = xdg-open
 endif
 
-DEPS_GRAPHICS = graphics/gameplay.c graphics/gui.c graphics/start.c graphics/gameplay/board.c graphics/resize.c
+DEPS_GRAPHICS = graphics/gameplay.c graphics/gui.c graphics/start.c graphics/gameplay/board.c 
 DEPS_GAME_FUNCTIONS = game_functions/board_functions.c
 
 DEPS__ = $(DEPS_GRAPHICS) $(DEPS_GAME_FUNCTIONS)

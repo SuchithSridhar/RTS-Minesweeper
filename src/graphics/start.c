@@ -192,29 +192,34 @@ void setStatsBounds(Statistics *stats, int *screen_width, int *screen_height) {
     }
 }
 
-void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state,
-                   int *screen_width, int *screen_height) {
-    switch (*state) {
-    case (STATE_START):
-        drawStartMenu(menu_bundle->menu, screen_width, screen_height);
-        startHover(mp, menu_bundle->menu);
-        break;
-    case (STATE_START_SETTINGS):
-        drawStartGameSettings(menu_bundle->start_settings, screen_width,
-                              screen_height);
-        startSettingsHover(mp, menu_bundle->start_settings);
-        break;
-    case (STATE_SETTINGS):
-        drawSettings(menu_bundle->settings, screen_width, screen_height);
-        settingsHover(mp, menu_bundle->settings);
-        break;
-    case (STATE_STATISTICS):
-        drawStatistics(menu_bundle->statistics, screen_width, screen_height);
-        statisticsHover(mp, menu_bundle->statistics);
-        break;
-    default:
-        // TODO: Add an error message.
-        break;
+void updateBounds(MenusBundle *menu_bundle, int *screen_width, int *screen_height){
+    setMenuBounds(menu_bundle->menu, screen_width, screen_height);
+    setSettingsBounds(menu_bundle->settings, screen_width, screen_height);
+    setStartGameBounds(menu_bundle->start_settings, screen_width, screen_height);
+    setStatsBounds(menu_bundle->statistics, screen_width, screen_height);
+}
+
+void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state, int *screen_width, int *screen_height){
+    switch (*state){
+        case (STATE_START):
+            drawStartMenu(menu_bundle->menu, screen_width, screen_height);
+            startHover(mp, menu_bundle->menu);
+            break;
+        case (STATE_START_SETTINGS):
+            drawStartGameSettings(menu_bundle->start_settings, screen_width, screen_height);
+            startSettingsHover(mp, menu_bundle->start_settings);
+            break;
+        case (STATE_SETTINGS):
+            drawSettings(menu_bundle->settings, screen_width, screen_height);
+            settingsHover(mp, menu_bundle->settings);
+            break;
+        case (STATE_STATISTICS):
+            drawStatistics(menu_bundle->statistics, screen_width, screen_height);
+            statisticsHover(mp, menu_bundle->statistics);
+            break;
+        default:
+            // TODO: Add an error message.
+            break;
     }
 }
 
@@ -233,11 +238,9 @@ void drawStartMenu(StartMenu *menu, int *screen_width, int *screen_height) {
         drawMenuButton(&menu->menu_button_array[i]);
     }
     Vector2 title_position;
-    title_position.x = *screen_width / 2.0f -
-                       ((float)MeasureText(menu->title, FONT_SIZE_TITLE)) / 2;
+    title_position.x = *screen_width / 2.0f - ((float)MeasureText(menu->title, *screen_width / FONT_SIZE_TITLE)) / 2.0f;
     title_position.y = *screen_height / 10.0f;
-    DrawText(menu->title, title_position.x, title_position.y, FONT_SIZE_TITLE,
-             BLACK);
+    DrawText(menu->title, title_position.x, title_position.y, *screen_width / FONT_SIZE_TITLE, BLACK);
 }
 void drawStartGameSettings(StartSettings *start_settings, int *screen_width,
                            int *screen_height) {
