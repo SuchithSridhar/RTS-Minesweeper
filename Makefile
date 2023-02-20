@@ -1,3 +1,6 @@
+# Makefile for RTS-Minesweeper
+
+# Variables
 SRC_DIR = src
 BUILD_DIR = bin
 PROD_DIR = prod
@@ -34,9 +37,10 @@ ifeq ($(OS),Windows_NT)
 	CFLAGS = -Wall -Wshadow -Wextra -g -std=c99 -Wno-missing-braces -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
 	C_PROD_FLAGS = -O3 -std=c99 -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
 	TARGET = minesweeper-rts.exe
-	DEV_TARGET_PATH = ./$(BUILD_DIR)/$(TARGET)
-	PROD_TARGET_PATH = ./$(PROD_DIR)/$(TARGET)
-	OPEN = start
+	DEV_TARGET_PATH = .\$(BUILD_DIR)\$(TARGET)
+	PROD_TARGET_PATH = .\$(PROD_DIR)\$(TARGET)
+	DOCS_INDEX = file://$(PROJ_DIR)$(DOCS_DIR)/html/index.html
+	OPEN = explorer
 else
 	detected_OS := $(shell uname)
 	CC = gcc
@@ -45,6 +49,7 @@ else
 	TARGET = minesweeper-rts
 	DEV_TARGET_PATH = ./$(BUILD_DIR)/$(TARGET)
 	PROD_TARGET_PATH = ./$(PROD_DIR)/$(TARGET)
+	DOCS_INDEX = file://$(PROJ_DIR)$(DOCS_DIR)/html/index.html
         OPEN = xdg-open
 endif
 
@@ -89,7 +94,7 @@ run: build
 	$(PROD_TARGET_PATH)
 
 docs:
-	$(OPEN) file://$(PROJ_DIR)$(DOCS_DIR)/html/index.html
+	$(OPEN) $(DOCS_INDEX) || true
 
 clean:
 	@printf "Cleaning the production directory..."
@@ -103,28 +108,28 @@ r_dev: b_dev
 	$(DEV_TARGET_PATH)
 
 debug: b_dev
-ifeq (, $(shell which gdb))
+ifeq (, $(shell which gdb > /dev/null 2>&1 ))
 	@printf "$(C_RED)gdb not installed. Please install gdb.$(C_RESET)\n"
 else
 	gdb $(DEV_TARGET_PATH)
 endif
 
 mem_test:
-ifeq (, $(shell which valgrind))
+ifeq (, $(shell which valgrind > /dev/null 2>&1 ))
 	@printf "$(C_RED)valgrind not installed. Please install valgrind.$(C_RESET)\n"
 else
 	valgrind $(DEV_TARGET_PATH)
 endif
 
 format:
-ifeq (, $(shell which clang-format))
+ifeq (, $(shell which clang-format > /dev/null 2>&1 ))
 	@printf "$(C_RED)No clang-format command installed. Please install clangd or clang.$(C_RESET)\n"
 else
 	find $(SRC_DIR) -iname "*.h" -o -iname "*.c" | xargs clang-format -i -style=file:"$(CLANG_FORMAT)"
 endif
 
 gen_docs:
-ifeq (, $(shell which doxygen))
+ifeq (, $(shell which doxygen > /dev/null 2>&1 ))
 	@printf "$(C_RED)doxygen not installed. Please install doxygen to generate documentation.$(C_RESET)\n"
 else
 	doxygen $(DOCS_DIR)/Doxyfile
