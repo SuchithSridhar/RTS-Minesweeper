@@ -108,34 +108,18 @@ r_dev: b_dev
 	$(DEV_TARGET_PATH)
 
 debug: b_dev
-ifeq (, $(shell which gdb > /dev/null 2>&1 ))
-	@printf "$(C_RED)gdb not installed. Please install gdb.$(C_RESET)\n"
-else
 	gdb $(DEV_TARGET_PATH)
-endif
 
 mem_test:
-ifeq (, $(shell which valgrind > /dev/null 2>&1 ))
-	@printf "$(C_RED)valgrind not installed. Please install valgrind.$(C_RESET)\n"
-else
-	valgrind $(DEV_TARGET_PATH)
-endif
+	valgrind -s --leak-check=full --show-leak-kinds=all $(DEV_TARGET_PATH)
 
 format:
-ifeq (, $(shell which clang-format > /dev/null 2>&1 ))
-	@printf "$(C_RED)No clang-format command installed. Please install clangd or clang.$(C_RESET)\n"
-else
 	find $(SRC_DIR) -iname "*.h" -o -iname "*.c" | xargs clang-format -i -style=file:"$(CLANG_FORMAT)"
-endif
 
 gen_docs:
-ifeq (, $(shell which doxygen > /dev/null 2>&1 ))
-	@printf "$(C_RED)doxygen not installed. Please install doxygen to generate documentation.$(C_RESET)\n"
-else
 	doxygen $(DOCS_DIR)/Doxyfile
 	@printf "\n$(C_GREEN)Documentation generated for the project.$(C_RESET)\n"
 	@printf "\nRun: \`$(C_BLUE)make docs$(C_RESET)\` to view the generated docs.$(C_RESET)\n"
-endif
 
 prod_dir:
 	mkdir -p $(PROD_DIR)
