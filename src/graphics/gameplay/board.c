@@ -10,12 +10,13 @@
 #include "../tmp_structs.h"
 #include "constants.h"
 
-int handleBoardActionEvents (Board *board, Vector2 mouse_position, double width, double height) {
+int handleBoardActionEvents(Board *board, Vector2 mouse_position, double width,
+                            double height) {
     double size = (width < height ? width : height);
-    float tile_width = ((float) size) / board->cols;
-    
-    int selected_tile_row = (int) (mouse_position.y / tile_width);
-    int selected_tile_col = (int) (mouse_position.x / tile_width);
+    float tile_width = ((float)size) / board->cols;
+
+    int selected_tile_row = (int)(mouse_position.y / tile_width);
+    int selected_tile_col = (int)(mouse_position.x / tile_width);
 
     int selected_tile_index = calcIndexFromPosition(
         selected_tile_row, selected_tile_col, board->cols);
@@ -31,11 +32,10 @@ int handleBoardActionEvents (Board *board, Vector2 mouse_position, double width,
     return EXIT_SUCCESS;
 }
 
-
-
-int drawBoard (Board *board, AssetManager *assets, double x_offset, double y_offset, double width, double height) {
+int drawBoard(Board *board, AssetManager *assets, double x_offset,
+              double y_offset, double width, double height) {
     double size = (width < height ? width : height);
-    float tile_width = ((float) size) / board->cols;
+    float tile_width = ((float)size) / board->cols;
     float scale = tile_width / TILE_IMAGE_SIZE;
     Vector2 position;
     Tile cur_tile;

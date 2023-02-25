@@ -192,45 +192,53 @@ void setStatsBounds(Statistics *stats, int *screen_width, int *screen_height) {
     }
 }
 
-void updateBounds(MenusBundle *menu_bundle, int *screen_width, int *screen_height){
+void updateBounds(MenusBundle *menu_bundle, int *screen_width,
+                  int *screen_height) {
     setMenuBounds(menu_bundle->menu, screen_width, screen_height);
     setSettingsBounds(menu_bundle->settings, screen_width, screen_height);
-    setStartGameBounds(menu_bundle->start_settings, screen_width, screen_height);
+    setStartGameBounds(menu_bundle->start_settings, screen_width,
+                       screen_height);
     setStatsBounds(menu_bundle->statistics, screen_width, screen_height);
 }
 
-void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state, int *screen_width, int *screen_height){
-    switch (*state){
-        case (STATE_START):
-            drawStartMenu(menu_bundle->menu, screen_width, screen_height);
-            startHover(mp, menu_bundle->menu);
-            break;
-        case (STATE_START_SETTINGS):
-            drawStartGameSettings(menu_bundle->start_settings, screen_width, screen_height);
-            startSettingsHover(mp, menu_bundle->start_settings);
-            break;
-        case (STATE_SETTINGS):
-            drawSettings(menu_bundle->settings, screen_width, screen_height);
-            settingsHover(mp, menu_bundle->settings);
-            break;
-        case (STATE_STATISTICS):
-            drawStatistics(menu_bundle->statistics, screen_width, screen_height);
-            statisticsHover(mp, menu_bundle->statistics);
-            break;
-        default:
-            // TODO: Add an error message.
-            break;
+void handleGUIDraw(MenusBundle *menu_bundle, Vector2 *mp, int *state,
+                   int *screen_width, int *screen_height) {
+    switch (*state) {
+    case (STATE_START):
+        drawStartMenu(menu_bundle->menu, screen_width, screen_height);
+        startHover(mp, menu_bundle->menu);
+        break;
+    case (STATE_START_SETTINGS):
+        drawStartGameSettings(menu_bundle->start_settings, screen_width,
+                              screen_height);
+        startSettingsHover(mp, menu_bundle->start_settings);
+        break;
+    case (STATE_SETTINGS):
+        drawSettings(menu_bundle->settings, screen_width, screen_height);
+        settingsHover(mp, menu_bundle->settings);
+        break;
+    case (STATE_STATISTICS):
+        drawStatistics(menu_bundle->statistics, screen_width, screen_height);
+        statisticsHover(mp, menu_bundle->statistics);
+        break;
+    default:
+        // TODO: Add an error message.
+        break;
     }
 }
 
 void drawMenuButton(MenuButton *menu_button) {
     Vector2 text_position;
-    text_position.x = menu_button->bounds.x + (menu_button->bounds.width / 2.0f) - ((float)MeasureText(menu_button->text, 
-    menu_button->bounds.width / FONT_SIZE_BUTTON)) / 2.0f;
-    text_position.y = menu_button->bounds.y + (menu_button->bounds.height / 2.0f);
+    text_position.x =
+        menu_button->bounds.x + (menu_button->bounds.width / 2.0f) -
+        ((float)MeasureText(menu_button->text,
+                            menu_button->bounds.width / FONT_SIZE_BUTTON)) /
+            2.0f;
+    text_position.y =
+        menu_button->bounds.y + (menu_button->bounds.height / 2.0f);
     DrawRectangleRec(menu_button->bounds, BLACK);
-    DrawText(menu_button->text, text_position.x, text_position.y, menu_button->bounds.width 
-    / FONT_SIZE_BUTTON, RAYWHITE);
+    DrawText(menu_button->text, text_position.x, text_position.y,
+             menu_button->bounds.width / FONT_SIZE_BUTTON, RAYWHITE);
 }
 
 void drawStartMenu(StartMenu *menu, int *screen_width, int *screen_height) {
@@ -238,9 +246,13 @@ void drawStartMenu(StartMenu *menu, int *screen_width, int *screen_height) {
         drawMenuButton(&menu->menu_button_array[i]);
     }
     Vector2 title_position;
-    title_position.x = *screen_width / 2.0f - ((float)MeasureText(menu->title, *screen_width / FONT_SIZE_TITLE)) / 2.0f;
+    title_position.x =
+        *screen_width / 2.0f -
+        ((float)MeasureText(menu->title, *screen_width / FONT_SIZE_TITLE)) /
+            2.0f;
     title_position.y = *screen_height / 10.0f;
-    DrawText(menu->title, title_position.x, title_position.y, *screen_width / FONT_SIZE_TITLE, BLACK);
+    DrawText(menu->title, title_position.x, title_position.y,
+             *screen_width / FONT_SIZE_TITLE, BLACK);
 }
 void drawStartGameSettings(StartSettings *start_settings, int *screen_width,
                            int *screen_height) {
@@ -278,11 +290,13 @@ void drawStatistics(Statistics *stats, int *screen_width, int *screen_height) {
 void mouseHoverButton(MenuButton *button) {
     DrawRectangleRec(button->bounds, DARKGRAY);
     Vector2 text_position;
-    text_position.x = button->bounds.x + (button->bounds.width / 2.0f) - ((float)MeasureText(button->text, button->bounds.width 
-    / FONT_SIZE_BUTTON)) / 2.0f;
+    text_position.x = button->bounds.x + (button->bounds.width / 2.0f) -
+                      ((float)MeasureText(button->text, button->bounds.width /
+                                                            FONT_SIZE_BUTTON)) /
+                          2.0f;
     text_position.y = button->bounds.y + (button->bounds.height / 2.0f);
-    DrawText(button->text, text_position.x, text_position.y, button->bounds.width 
-    / FONT_SIZE_BUTTON, YELLOW);
+    DrawText(button->text, text_position.x, text_position.y,
+             button->bounds.width / FONT_SIZE_BUTTON, YELLOW);
 }
 bool checkHover(MenuButton *menu_button_array, Vector2 *mp, int start_index,
                 int end_index) {

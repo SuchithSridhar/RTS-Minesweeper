@@ -43,7 +43,7 @@ void runGameGui() {
         screen_width = GetScreenWidth();
         screen_height = GetScreenHeight();
         updateBounds(menu_bundle, &screen_width, &screen_height);
-        
+
         handleStateClicks(menu_bundle, &mouse_position, &state);
 
         // Pre-drawing operations based on current state.

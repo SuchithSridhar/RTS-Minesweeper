@@ -248,15 +248,18 @@ void setSettingsBounds(Settings *settings, int *screen_width,
 void setStatsBounds(Statistics *stats, int *screen_width, int *screen_height);
 
 /**
- * The updateBounds function serves as a wrapper function to adjust the bounds for all menu items
+ * The updateBounds function serves as a wrapper function to adjust the bounds
+ * for all menu items
  * @param menu_bundle pointer to a MenusBundle struct
  * @param screen_width represents the current screen width
  * @param screen_height represents the current screen height
-*/
-void updateBounds(MenusBundle *menu_bundle, int *screen_width, int *screen_height);
+ */
+void updateBounds(MenusBundle *menu_bundle, int *screen_width,
+                  int *screen_height);
 
 /**
- * The checkHover function determines whether the mouse is hovered over a menu button
+ * The checkHover function determines whether the mouse is hovered over a menu
+ * button
  * @param menu_button_array a pointer to an array of MenuButtons
  * @param mp a pointer to a Vector2 which represents the current position of the
  * mouse
