@@ -4,10 +4,11 @@
 #include "raylib.h"
 
 #include "../game_functions/game_structs.h"
+#include "./gameplay/board.h"
 #include "tmp_structs.h"
 
 typedef struct {
-    Board *board;
+    BoardGui *boardGui;
     AssetManager *assets;
 } GameplayData;
 
@@ -39,11 +40,11 @@ int handleGameplayDraw(GameplayData *gameplay_data, int screen_width,
 /**
  * Handle all mouse clicks related to STATE_GAMEPLAY.
  * @param gameplay_data GameplayData struct to store gameplay data.
+ * @param mouse_position the current position of the mouse as a Vector2 struct.
  * @param screen_width represents the current width of the window.
  * @param screen_height represents the current height of the window.
  * @return An exit code for the function if necessary, returns 0 otherwise.
  */
-int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position,
-                          int screen_width, int screen_height);
+int handleGameplayActions(GameplayData *gameplay_data, Vector2 *mouse_position);
 
 #endif

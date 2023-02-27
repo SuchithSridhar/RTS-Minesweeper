@@ -49,8 +49,7 @@ void runGameGui() {
         // Pre-drawing operations based on current state.
         switch (state) {
         case STATE_GAMEPLAY:
-            handleGameplayActions(gameplay_data, &mouse_position, screen_width,
-                                  screen_height);
+            handleGameplayActions(gameplay_data, &mouse_position);
             break;
         case STATE_TRANSITION_GAMEPLAY:
             gameplay_data = initGameplay(assets);
