@@ -2,6 +2,7 @@
 #define BOARD_FUNCTIONS_H
 
 #include "game_structs.h"
+#include "../graphics/gameplay/board.h"
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -84,5 +85,16 @@ Board *createBoard(int width, int height);
  * @param board A pointer to the board to destroy.
  */
 void destroyBoard(Board *board);
+
+
+void generateBoard(BoardGui *board, int selected_tile_index);
+
+
+void openInitialTiles(Board *board, int selected_tile_index);
+
+void placeBombs();
+
+void updateTileValues(); 
+
 
 #endif

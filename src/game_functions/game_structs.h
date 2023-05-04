@@ -22,6 +22,9 @@ typedef struct Board {
     /* Holds the array of tiles. Represents a 2D grid. */
     Tile *tile_array;
 
+    /* Bool which determines whether the board his been assigned values or not (if the player has clicked the board to start it)*/
+    bool game_start;
+
     /*
      * function to be called when tile clicked.
      * Returns true if game ends.

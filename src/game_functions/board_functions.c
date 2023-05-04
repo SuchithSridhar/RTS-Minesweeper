@@ -102,6 +102,7 @@ Board *createBoard(int width, int height) {
     new_board->array_size = size;
     new_board->cols = height;
     new_board->rows = width;
+    new_board->game_start = false;
 
     new_board->tile_array = createTileArray(size);
     initilizeTileArray(new_board->tile_array, size, width);
@@ -113,4 +114,27 @@ Board *createBoard(int width, int height) {
 void destroyBoard(Board *board) {
     destroyTileArray(board->tile_array);
     free(board);
+}
+
+
+void generateBoard(BoardGui *bg, int selected_tile_index){
+
+    openInitialTiles(bg->board, selected_tile_index);
+    bg->board->game_start = true;
+}
+
+
+void openInitialTiles(Board *board, int selected_tile_index){
+
+    struct positionFromIndex position = calcPositionFromIndex(selected_tile_index, board->rows);
+    board->click(board, position.row, position.col);
+    if(position.row < board->rows - 1)
+        board->click(board, position.row + 1, position.col);
+    if(position.row > 0)
+        board->click(board, position.row-1, position.col);
+    if(position.col < board->cols - 1)
+        board->click(board, position.row, position.col + 1);
+    if(position.col > 0)
+        board->click(board, position.row, position.col - 1);
+
 }

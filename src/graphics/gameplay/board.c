@@ -34,7 +34,10 @@ int handleBoardActionEvents(BoardGui *bg, Vector2 mouse_position) {
     bool gameEnd = false;
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        gameEnd = bg->board->click(
+        if(!bg->board->game_start)
+            generateBoard(bg, selected_tile_index);
+        else
+            gameEnd = bg->board->click(
                     bg->board, selected_tile_row, selected_tile_col
                   );
     } else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
