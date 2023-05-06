@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
+#define TILES_AROUND 8
+
 struct positionFromIndex calcPositionFromIndex(int index, int width) {
     struct positionFromIndex return_val;
     return_val.row = index / width;
@@ -46,12 +48,44 @@ void initilizeTileArray(Tile *tile_array, int size, int width) {
 
 void destroyTileArray(Tile *tile_array) { free(tile_array); }
 
+void updateNeighborTiles(Board *board, int index) {
+    // Tile Index out of bounds
+    if (index < 0 || index >= board->array_size) return;
+
+    Tile *tile = board->tile_array + index;
+
+    // Tile has already been clicked
+    if (tile->is_open) return;
+
+    tile->is_open = true;
+
+    // Offsets for each of the 8 tiles around
+    int c = board->cols;
+    int surround_offsets[TILES_AROUND] = {
+        -c-1, -c, -c+1,
+        -1, 1,
+        c-1, c, c+1
+    };
+
+    // If no bombs around 
+    if (tile->bombs_around == 0) {
+        for (int i = 0; i < TILES_AROUND; i++) {
+            updateNeighborTiles(board, index + surround_offsets[i]);
+        }
+    }
+}
+
 bool handleBoardClick(Board *board, int row, int col) {
     int index = calcIndexFromPosition(row, col, board->cols);
+
+    // Tile Index out of bounds
+    if (index < 0 || index >= board->array_size) return false;
+
     // Get the pointer to the tile at that index
     Tile *tile = board->tile_array + index;
 
-    tile->is_open = true;
+    updateNeighborTiles(board, index);
+
     return tile->is_bomb;
 }
 
