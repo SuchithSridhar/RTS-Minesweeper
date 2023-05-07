@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #include "../../game_functions/board_functions.h"
-#include "../tmp_structs.h"
+#include "../assets_manager.h"
 #include "constants.h"
 
 BoardGui *createBoardGui(Board *board) {
@@ -34,9 +34,8 @@ int handleBoardActionEvents(BoardGui *bg, Vector2 mouse_position) {
     bool gameEnd = false;
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        gameEnd = bg->board->click(
-                    bg->board, selected_tile_row, selected_tile_col
-                  );
+        gameEnd =
+            bg->board->click(bg->board, selected_tile_row, selected_tile_col);
     } else if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
         Tile *tile = bg->board->tile_array + selected_tile_index;
         tile->is_flagged = !tile->is_flagged;

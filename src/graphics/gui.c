@@ -4,8 +4,8 @@
 #include "raymath.h"
 
 #include "gameplay.h"
-#include "tmp_structs.h"
 
+#include "assets_manager.h"
 #include "constants.h"
 #include "gui.h"
 #include "menu.h"
@@ -20,6 +20,7 @@ int state = STATE_START;
 void runGameGui() {
 
     MenusBundle *menu_bundle = initMenusBundle(&screen_width, &screen_height);
+    AssetManager *assets = initAssetManager();
     GameplayData *gameplay_data = NULL;
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -27,17 +28,7 @@ void runGameGui() {
     Vector2 mouse_position = {0.0f, 0.0f};
     SetTargetFPS(60);
 
-    // TODO: Move to a different file.
-    AssetManager *assets = (AssetManager *)malloc(sizeof(AssetManager));
-    assets->tile_1 = LoadTexture("assets/themes/playful/tile-1.png");
-    assets->tile_2 = LoadTexture("assets/themes/playful/tile-2.png");
-    assets->tile_3 = LoadTexture("assets/themes/playful/tile-3.png");
-    assets->tile_4 = LoadTexture("assets/themes/playful/tile-4.png");
-    assets->tile_5 = LoadTexture("assets/themes/playful/tile-5.png");
-    assets->tile_opened = LoadTexture("assets/themes/playful/tile-opened.png");
-    assets->tile_closed = LoadTexture("assets/themes/playful/tile-closed.png");
-    assets->tile_flag = LoadTexture("assets/themes/playful/tile-flag.png");
-    assets->tile_bomb = LoadTexture("assets/themes/playful/tile-bomb.png");
+    loadAllAssets(assets, DEFAULT_THEME);
 
     while (!WindowShouldClose() && state != STATE_EXIT) {
         screen_width = GetScreenWidth();
@@ -75,8 +66,6 @@ void runGameGui() {
         EndDrawing();
     }
     freeMenusBundle(menu_bundle);
-
-    // TODO: Move to a different file.
-    free(assets);
+    destroyAssetManager(assets);
     CloseWindow();
 }
