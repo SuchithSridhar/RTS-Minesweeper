@@ -48,4 +48,5 @@ dkms.conf
 .vscode
 bin
 prod
+docs/html
 .gdb_history
