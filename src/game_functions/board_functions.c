@@ -4,6 +4,13 @@
 
 #define TILES_AROUND 8
 
+/**
+ * Update all necessary tiles as a certain tile has been clicked.
+ * @param board the Board struct to update.
+ * @param index the index at which the update is to start.
+ */
+void _updateNeighborTiles(Board *board, int index);
+
 struct positionFromIndex calcPositionFromIndex(int index, int width) {
     struct positionFromIndex return_val;
     return_val.row = index / width;
@@ -48,7 +55,7 @@ void initilizeTileArray(Tile *tile_array, int size, int width) {
 
 void destroyTileArray(Tile *tile_array) { free(tile_array); }
 
-void updateNeighborTiles(Board *board, int index) {
+void _updateNeighborTiles(Board *board, int index) {
     // Tile Index out of bounds
     if (index < 0 || index >= board->array_size)
         return;
@@ -69,7 +76,7 @@ void updateNeighborTiles(Board *board, int index) {
     // If no bombs around
     if (tile->bombs_around == 0) {
         for (int i = 0; i < TILES_AROUND; i++) {
-            updateNeighborTiles(board, index + surround_offsets[i]);
+            _updateNeighborTiles(board, index + surround_offsets[i]);
         }
     }
 }
@@ -84,7 +91,7 @@ bool handleBoardClick(Board *board, int row, int col) {
     // Get the pointer to the tile at that index
     Tile *tile = board->tile_array + index;
 
-    updateNeighborTiles(board, index);
+    _updateNeighborTiles(board, index);
 
     return tile->is_bomb;
 }

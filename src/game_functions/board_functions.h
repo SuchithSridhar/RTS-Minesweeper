@@ -72,13 +72,6 @@ void initilizeTileArray(Tile *tile_array, int size, int width);
 void destroyTileArray(Tile *tile_array);
 
 /**
- * Update all necessary tiles as a certain tile has been clicked.
- * @param board the Board struct to update.
- * @param index the index at which the update is to start.
- */
-void updateNeighborTiles(Board *board, int index);
-
-/**
  * Create and initialize a board with some tiles.
  * @param width the width of the board to create.
  * @param height the height of the board to create.
