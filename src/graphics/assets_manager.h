@@ -22,8 +22,23 @@ typedef struct AssetManager {
     bool textures_loaded;
 } AssetManager;
 
+/**
+ * Create and initialize the AssetManager struct on the heap.
+ * @return A pointer to the allocated AssetManager.
+ */
 AssetManager *initAssetManager();
+
+/**
+ * Load textures for a particular theme into the asset manager.
+ * @param asset_manager the AssetManager to load the textures into.
+ * @param theme the theme that is to be loaded.
+ */
 void loadAllAssets(AssetManager *asset_manager, char *theme);
+
+/**
+ * Destroy the asset manager and unload all the themes.
+ * @param assets the AssetManager to destory.
+ */
 void destroyAssetManager(AssetManager *assets);
 
 #endif
