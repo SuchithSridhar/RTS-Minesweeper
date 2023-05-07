@@ -18,7 +18,7 @@ char title[] = GAME_TITLE;
 int state = STATE_START;
 
 void _set_test_board(GameplayData *gpd) {
-    Board *board = gpd->board;
+    Board *board = gpd->boardGui->board;
 
     for (int i = 0; i < board->array_size; i++) {
         board->tile_array[i].bombs_around = 0;
