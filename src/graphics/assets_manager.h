@@ -37,7 +37,7 @@ void loadAllAssets(AssetManager *asset_manager, char *theme);
 
 /**
  * Destroy the asset manager and unload all the themes.
- * @param assets the AssetManager to destory.
+ * @param assets the AssetManager to destroy.
  */
 void destroyAssetManager(AssetManager *assets);
 
