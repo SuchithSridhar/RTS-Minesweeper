@@ -1,6 +1,9 @@
 #include "board_functions.h"
+#include "constants.h"
 #include <stdbool.h>
 #include <stdlib.h>
+#include <math.h>
+#include <time.h>
 
 #define TILES_AROUND 8
 
@@ -118,8 +121,8 @@ void destroyBoard(Board *board) {
 
 
 void generateBoard(BoardGui *bg, int selected_tile_index){
-
     openInitialTiles(bg->board, selected_tile_index);
+    placeBombs(bg,bg->size * DEFAULT_CLUSTER_FACTOR);
     bg->board->game_start = true;
 }
 
@@ -128,13 +131,54 @@ void openInitialTiles(Board *board, int selected_tile_index){
 
     struct positionFromIndex position = calcPositionFromIndex(selected_tile_index, board->rows);
     board->click(board, position.row, position.col);
+
     if(position.row < board->rows - 1)
         board->click(board, position.row + 1, position.col);
+
     if(position.row > 0)
         board->click(board, position.row-1, position.col);
+
     if(position.col < board->cols - 1)
         board->click(board, position.row, position.col + 1);
+        
+
     if(position.col > 0)
         board->click(board, position.row, position.col - 1);
 
+}
+
+
+void placeBombs(BoardGui *bg, double clusterVarSD){
+    double average_x = (double) bg->size / 2 + bg->x_offset;
+    double average_y = (double) bg->size / 2 + bg->y_offset;
+    int size = 1;
+    int num_bombs = DEFAULT_NUM_BOMBS;
+    double x_cord;
+    double y_cord;
+    double U1;
+    double U2;
+    int tile_width = (bg->size) / bg->board->cols;
+    int row;
+    int col;
+    int index;
+    srand(time(NULL));
+    while(num_bombs != 0){
+        U1 = (double) rand() / (double) RAND_MAX;
+        U2 = (double) rand() / (double) RAND_MAX;
+        x_cord = sqrt(-2 * log(U1)) * cos(2 * PI * U2);
+        y_cord = sqrt(-2 * log(U1)) * sin(2 * PI * U2);
+        
+        x_cord = x_cord * clusterVarSD + average_x;
+        y_cord = y_cord * clusterVarSD + average_x;
+        if(x_cord <= bg->x_offset || x_cord > bg->size + bg->x_offset || y_cord <= bg->y_offset || y_cord > bg->size + bg->y_offset)
+            continue;  
+        row = x_cord / tile_width;
+        col = y_cord / tile_width;
+        index = calcIndexFromPosition(row, col, bg->board->cols);
+        if(bg->board->tile_array[index].is_open || bg->board->tile_array[index].is_bomb){
+            continue;
+        }
+        bg->board->tile_array[index].is_bomb = true;
+        num_bombs--;
+    }
 }

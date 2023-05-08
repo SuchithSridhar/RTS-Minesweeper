@@ -62,7 +62,7 @@ int drawBoard(BoardGui *bg, AssetManager *assets) {
 
             cur_tile = board->tile_array[(i * board->cols) + j];
 
-            if (cur_tile.is_bomb) {
+            if (cur_tile.is_bomb && cur_tile.is_open) {
                 asset_to_draw = assets->tile_bomb;
             } else if (cur_tile.is_open) {
                 switch (cur_tile.bombs_around) {

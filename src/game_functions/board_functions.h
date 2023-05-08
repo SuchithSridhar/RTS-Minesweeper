@@ -92,7 +92,7 @@ void generateBoard(BoardGui *board, int selected_tile_index);
 
 void openInitialTiles(Board *board, int selected_tile_index);
 
-void placeBombs();
+void placeBombs(BoardGui *bg, double clusterVarSD);
 
 void updateTileValues(); 
 
