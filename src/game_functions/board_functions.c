@@ -34,8 +34,7 @@ void initilizeTile(Tile *tile, int row, int col, bool is_bomb) {
     tile->row = row;
     tile->col = col;
 
-    // -1 represents bombs around
-    tile->bombs_around = -1;
+    tile->bombs_around = 0;
     tile->is_bomb = is_bomb;
     tile->is_flagged = false;
     tile->is_open = false;
@@ -148,7 +147,7 @@ void openInitialTiles(Board *board, int selected_tile_index){
 }
 
 
-void placeBombs(BoardGui *bg, double clusterVarSD){
+void placeBombs(BoardGui *bg, double cluster_var_SD){
     double average_x = (double) bg->size / 2 + bg->x_offset;
     double average_y = (double) bg->size / 2 + bg->y_offset;
     int size = 1;
@@ -168,8 +167,8 @@ void placeBombs(BoardGui *bg, double clusterVarSD){
         x_cord = sqrt(-2 * log(U1)) * cos(2 * PI * U2);
         y_cord = sqrt(-2 * log(U1)) * sin(2 * PI * U2);
         
-        x_cord = x_cord * clusterVarSD + average_x;
-        y_cord = y_cord * clusterVarSD + average_x;
+        x_cord = x_cord * cluster_var_SD + average_x;
+        y_cord = y_cord * cluster_var_SD + average_y;
         if(x_cord <= bg->x_offset || x_cord > bg->size + bg->x_offset || y_cord <= bg->y_offset || y_cord > bg->size + bg->y_offset)
             continue;  
         row = x_cord / tile_width;
@@ -180,5 +179,19 @@ void placeBombs(BoardGui *bg, double clusterVarSD){
         }
         bg->board->tile_array[index].is_bomb = true;
         num_bombs--;
+        updateTileValues(bg->board,index);
     }
+}
+
+
+
+
+void updateTileValues(Board *board,int bomb_index){
+        int tile_indices[TILES_AROUND] = {bomb_index - board->cols - 1, bomb_index - board->cols, bomb_index - board->cols + 1,
+                                     bomb_index - 1, bomb_index + 1, bomb_index + board->cols-1, 
+                                     bomb_index + board->cols, bomb_index + board->cols + 1 };
+        for(int i = 0; i < TILES_AROUND; i++){
+            if(tile_indices[i] >= 0 && tile_indices[i] < board->array_size && !board->tile_array[tile_indices[i]].is_bomb)
+                board->tile_array[tile_indices[i]].bombs_around++;
+        }
 }

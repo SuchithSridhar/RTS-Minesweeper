@@ -86,15 +86,35 @@ Board *createBoard(int width, int height);
  */
 void destroyBoard(Board *board);
 
+/**
+ * Upon first clicking the board, the generate board function clears an area for the player, 
+ * generates a certain number of bombs and updates the tiles around the bombs
+ * @param bg A BoardGui struct, which is used to start the game
+ * @param selected_tile_index an int representing the index of the tile which has been clicked
+*/
+void generateBoard(BoardGui *bg, int selected_tile_index);
 
-void generateBoard(BoardGui *board, int selected_tile_index);
-
-
+/**
+ * The openInitialTiles function opens the initial space for the player
+ * @param board A Board struct which is used to access the tile array to determine which tiles to open
+ * @param selected_tile_index an int representing the index of the tile which has been clicked
+*/
 void openInitialTiles(Board *board, int selected_tile_index);
-
-void placeBombs(BoardGui *bg, double clusterVarSD);
-
-void updateTileValues(); 
+/**
+ * The placeBombs function generates a certain number of bombs for the board to use. The function achieves this by using the Box-Muller transformation
+ * to achieve a gaussian distribution. This distribution can be altered by increasing or decreasing the clusterVarSD double variable
+ * @param bg A BoardGui struct, which is for the positioning and size of the board
+ * @param cluster_var_SD A double value representing the standard deviation of the gaussian distribution. Can be used as a sort of "cluster variable"
+ * where lower values are more clustered (Does not work for extremely low values)
+*/
+void placeBombs(BoardGui *bg, double cluster_var_SD);
+/**
+ * Updates the tile values around a specific bomb index
+ * @param board A Board struct which is used to access the tile array to determine which tiles to update
+ * @param bomb_index an int representing the index of the tile which holds a bomb
+ * 
+*/
+void updateTileValues(Board *board, int bomb_index); 
 
 
 #endif
