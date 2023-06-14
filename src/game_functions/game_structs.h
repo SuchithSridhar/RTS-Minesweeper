@@ -19,12 +19,6 @@ typedef struct {
 
 /* Hold data about the minesweeper board. */
 typedef struct Board {
-    int rows;
-    int cols;
-
-    /* Size of tile array. */
-    int array_size;
-
     /* Holds the array of tiles. Represents a 2D grid. */
     Tile *tile_array;
 
@@ -33,6 +27,12 @@ typedef struct Board {
      * Returns true if game ends.
      */
     bool (*click)(struct Board *, int, int);
+
+    int rows;
+    int cols;
+
+    /* Size of tile array. */
+    int array_size;
 } Board;
 
 #endif

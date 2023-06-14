@@ -17,6 +17,14 @@ int screen_height = INITIAL_SCREEN_HEIGHT;
 char title[] = GAME_TITLE;
 int state = STATE_START;
 
+void _set_test_board(GameplayData *gpd) {
+    Board *board = gpd->boardGui->board;
+
+    for (int i = 0; i < board->array_size; i++) {
+        board->tile_array[i].bombs_around = 0;
+    }
+}
+
 void runGameGui() {
 
     MenusBundle *menu_bundle = initMenusBundle(&screen_width, &screen_height);
@@ -53,6 +61,12 @@ void runGameGui() {
             break;
         case STATE_TRANSITION_GAMEPLAY:
             gameplay_data = initGameplay(assets);
+
+            // TODO: Update to real function
+            // this is just a function to test other
+            // functionality
+            _set_test_board(gameplay_data);
+
             state = STATE_GAMEPLAY;
         default:
             // TODO: Add an error message.
