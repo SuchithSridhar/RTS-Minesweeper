@@ -6,5 +6,6 @@
 #define INITIAL_SCREEN_HEIGHT 800
 #define INITIAL_SCREEN_WIDTH 800
 #define GAME_TITLE "RTS Minesweeper"
+#define DEFAULT_THEME "playful"
 
 #endif

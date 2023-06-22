@@ -4,7 +4,7 @@
 #include "raylib.h"
 
 #include "../../game_functions/game_structs.h"
-#include "../tmp_structs.h"
+#include "../assets_manager.h"
 
 /** A struct to hold data for the GUI of the Board. */
 typedef struct {

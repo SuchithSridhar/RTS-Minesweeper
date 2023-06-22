@@ -5,7 +5,7 @@
 
 #include "../game_functions/game_structs.h"
 #include "./gameplay/board.h"
-#include "tmp_structs.h"
+#include "assets_manager.h"
 
 typedef struct {
     BoardGui *boardGui;

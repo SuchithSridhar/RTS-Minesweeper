@@ -7,7 +7,6 @@
 #include "../game_functions/game_structs.h"
 #include "gameplay/board.h"
 #include "gameplay/constants.h"
-#include "tmp_structs.h"
 
 GameplayData *initGameplay(AssetManager *assets) {
     GameplayData *gpd = malloc(sizeof(GameplayData));
