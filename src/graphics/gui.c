@@ -62,10 +62,10 @@ void runGameGui() {
         case STATE_TRANSITION_GAMEPLAY:
             gameplay_data = initGameplay(assets);
 
-            // TODO: Update to real function
-            // this is just a function to test other
-            // functionality
-            _set_test_board(gameplay_data);
+            // // TODO: Update to real function
+            // // this is just a function to test other
+            // // functionality
+            // _set_test_board(gameplay_data);
 
             state = STATE_GAMEPLAY;
         default:

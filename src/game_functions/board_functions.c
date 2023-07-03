@@ -129,21 +129,28 @@ void generateBoard(BoardGui *bg, int selected_tile_index){
 void openInitialTiles(Board *board, int selected_tile_index){
 
     struct positionFromIndex position = calcPositionFromIndex(selected_tile_index, board->rows);
-    board->click(board, position.row, position.col);
+    (&board->tile_array[selected_tile_index])->is_open = true;
+    int index;
 
-    if(position.row < board->rows - 1)
-        board->click(board, position.row + 1, position.col);
+    if(position.row < board->rows - 1){
+        index = calcIndexFromPosition(position.row + 1, position.col, board->rows);
+        (&board->tile_array[index])->is_open = true;
+    }
 
-    if(position.row > 0)
-        board->click(board, position.row-1, position.col);
+    if(position.row > 0){
+        index = calcIndexFromPosition(position.row - 1, position.col, board->rows);
+        (&board->tile_array[index])->is_open = true;
+    }
 
-    if(position.col < board->cols - 1)
-        board->click(board, position.row, position.col + 1);
+    if(position.col < board->cols - 1){
+        index = calcIndexFromPosition(position.row, position.col + 1, board->rows);
+        (&board->tile_array[index])->is_open = true;
+    }
         
-
-    if(position.col > 0)
-        board->click(board, position.row, position.col - 1);
-
+    if(position.col > 0){
+        index = calcIndexFromPosition(position.row, position.col-1, board->rows);
+        (&board->tile_array[index])->is_open = true;
+    }
 }
 
 
